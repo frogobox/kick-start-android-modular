@@ -1,4 +1,4 @@
-package com.frogobox.base.adapter
+package com.frogobox.base.ui.adapter
 
 /**
  * Created by Faisal Amir

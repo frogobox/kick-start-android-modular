@@ -12,6 +12,8 @@ import android.net.Uri
 import android.os.Build
 import android.preference.PreferenceManager
 import android.provider.BaseColumns
+import com.frogobox.base.modular.model.FavoriteMovie
+import com.frogobox.base.modular.model.FavoriteTvShow
 import java.text.SimpleDateFormat
 import java.util.*
 

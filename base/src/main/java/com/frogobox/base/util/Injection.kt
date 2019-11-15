@@ -2,6 +2,12 @@ package com.frogobox.base.util
 
 import android.content.Context
 import android.preference.PreferenceManager
+import com.frogobox.base.modular.source.Repository
+import com.frogobox.base.modular.source.local.AppDatabase
+import com.frogobox.base.modular.source.local.LocalDataSource
+import com.frogobox.base.modular.source.local.dao.FavoriteMovieDao
+import com.frogobox.base.modular.source.local.dao.FavoriteTvShowDao
+import com.frogobox.base.modular.source.remote.RemoteDataSource
 
 /**
  * Created by Faisal Amir

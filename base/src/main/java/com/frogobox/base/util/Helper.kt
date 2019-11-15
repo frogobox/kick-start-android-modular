@@ -8,6 +8,7 @@ import android.net.NetworkInfo
 import android.os.Build
 import android.preference.PreferenceManager
 import com.frogobox.base.BaseHelper
+import com.frogobox.base.util.Constant.Pref.PREF_NAME
 import java.text.SimpleDateFormat
 import java.util.*
 
