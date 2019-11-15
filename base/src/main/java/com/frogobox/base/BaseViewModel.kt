@@ -2,6 +2,7 @@ package com.frogobox.base
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import com.frogobox.base.util.SingleLiveEvent
 
 /**
  * Created by Faisal Amir
@@ -20,3 +21,9 @@ import androidx.lifecycle.AndroidViewModel
  * com.frogobox.base
  *
  */
+
+open class BaseViewModel(application: Application) : AndroidViewModel(application) {
+    var eventShowProgress = SingleLiveEvent<Boolean>()
+    var eventIsEmpty = SingleLiveEvent<Boolean>()
+
+}
