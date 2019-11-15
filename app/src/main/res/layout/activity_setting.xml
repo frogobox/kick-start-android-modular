@@ -4,6 +4,95 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/dimen_big_16dp"
+    android:background="@color/colorBaseWhite"
     tools:context=".ui.activity.SettingActivity">
+
+    <ImageView
+        android:id="@+id/iv_setting_lang"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_translate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/switch_release_reminder"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_lang"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/text_select_language"
+        android:textColor="@color/colorBaseBlack"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_setting_lang"
+        app:layout_constraintEnd_toStartOf="@+id/iv_setting_lang"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_setting_lang" />
+
+    <Switch
+        android:id="@+id/switch_daily_reminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_release_reminder" />
+
+    <TextView
+        android:id="@+id/tv_release_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/text_release_reminder_0"
+        android:textColor="@color/colorBaseBlack"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tv_release_desc"
+        app:layout_constraintEnd_toStartOf="@+id/switch_release_reminder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switch_release_reminder" />
+
+    <TextView
+        android:id="@+id/tv_release_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/text_release_reminder_1"
+        app:layout_constraintBottom_toBottomOf="@+id/switch_release_reminder"
+        app:layout_constraintEnd_toStartOf="@+id/switch_release_reminder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_release_title" />
+
+    <Switch
+        android:id="@+id/switch_release_reminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_setting_lang" />
+
+    <TextView
+        android:id="@+id/tv_daily_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/text_daily_reminder_0"
+        android:textColor="@color/colorBaseBlack"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tv_daily_desc"
+        app:layout_constraintEnd_toStartOf="@+id/switch_daily_reminder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switch_daily_reminder" />
+
+    <TextView
+        android:id="@+id/tv_daily_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/text_daily_reminder_1"
+        app:layout_constraintBottom_toBottomOf="@+id/switch_daily_reminder"
+        app:layout_constraintEnd_toStartOf="@+id/switch_daily_reminder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_daily_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
