@@ -1,5 +1,16 @@
 package com.frogobox.base.modular.rvadapter
 
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.frogobox.base.BuildConfig
+import com.frogobox.base.modular.model.Movie
+import com.frogobox.base.ui.adapter.BaseViewAdapter
+import com.frogobox.base.ui.adapter.BaseViewHolder
+import com.frogobox.base.util.Helper.Func.removeBackSlash
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.item_grid_tv_movie.view.*
+
 /**
  * Created by Faisal Amir
  * FrogoBox Inc License
@@ -17,3 +28,32 @@ package com.frogobox.base.modular.rvadapter
  * com.frogobox.base.modular.rvadapter
  *
  */
+class MovieAdapter :
+    BaseViewAdapter<Movie, MovieAdapter.MovieViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        MovieViewHolder(
+            LayoutInflater.from(mContext).inflate(
+                mRecyclerViewLayout,
+                parent,
+                false
+            )
+        )
+
+    inner class MovieViewHolder(view: View) : BaseViewHolder<Movie>(view) {
+
+        private val ivPoster = view.iv_poster
+        private val tvTitle = view.tv_title
+        private val tvOverview = view.tv_overview
+
+        override fun initComponent(data: Movie) {
+            super.initComponent(data)
+            val poster = data.poster_path?.let { removeBackSlash(it) }
+            Picasso.get().load(BuildConfig.TMDB_PATH_URL_IMAGE + poster).into(ivPoster)
+            tvTitle.text = data.title
+            tvOverview.text = data.overview
+        }
+
+    }
+
+}
