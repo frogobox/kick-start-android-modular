@@ -1,5 +1,8 @@
 package com.frogobox.base.util
 
+import android.content.Context
+import android.preference.PreferenceManager
+
 /**
  * Created by Faisal Amir
  * FrogoBox Inc License
@@ -17,3 +20,24 @@ package com.frogobox.base.util
  * com.frogobox.base.util
  *
  */
+object Injection {
+
+    fun provideRepository(context: Context): Repository {
+
+        val favoriteMovieDao: FavoriteMovieDao by lazy {
+            AppDatabase.getInstance(context).favoriteMovieDao()
+        }
+
+        val favoriteTvShowDao: FavoriteTvShowDao by lazy {
+            AppDatabase.getInstance(context).favoriteTvShowDao()
+        }
+
+        val appExecutors = AppExecutors()
+
+        return Repository.getInstance(
+            RemoteDataSource, LocalDataSource.getInstance(
+                appExecutors,
+                PreferenceManager.getDefaultSharedPreferences(context),
+                favoriteMovieDao, favoriteTvShowDao))
+    }
+}

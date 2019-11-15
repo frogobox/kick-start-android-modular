@@ -1,5 +1,8 @@
 package com.frogobox.base.util
 
+import java.util.concurrent.Executor
+import java.util.concurrent.Executors
+
 /**
  * Created by Faisal Amir
  * FrogoBox Inc License
@@ -17,3 +20,11 @@ package com.frogobox.base.util
  * com.frogobox.base.util
  *
  */
+class DiskIOThreadExecutor: Executor {
+
+    private val diskIO = Executors.newSingleThreadExecutor()
+
+    override fun execute(command: Runnable) {
+        diskIO.execute(command)
+    }
+}
