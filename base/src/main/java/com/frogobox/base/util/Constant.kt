@@ -39,7 +39,7 @@ class Constant {
     object RoomDatabase {
         const val DATABASE_NAME = "movie.db"
 
-        const val CONTENT_AUTHORITY = "com.frogobox.submission" // Nama Domain Aplikasi
+        const val CONTENT_AUTHORITY = "com.frogobox.mvvm" // Nama Domain Aplikasi
         const val SCHEME = "content"
 
         object Movie {
@@ -163,8 +163,8 @@ class Constant {
     }
 
     object Constant {
-        const val PACKAGE_ROOT = "com.frogobox.submission"
-        const val PATH_MAIN_ACTIVITY = "com.frogobox.submission.view.ui.activity.MainActivity"
+        const val PACKAGE_ROOT = "com.frogobox.mvvm"
+        const val PATH_MAIN_ACTIVITY = "com.frogobox.mvvm.view.ui.activity.MainActivity"
 
         // Format Date
         const val DATE_TIME_GLOBAL = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" //

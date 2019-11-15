@@ -3,19 +3,20 @@
     package="com.frogobox.mvvm">
 
     <permission
-        android:name="com.frogobox.submission.provider.FavoriteMovieProvider.READ_DATABASE_MOVIE"
+        android:name="com.frogobox.mvvm.provider.FavoriteMovieProvider.READ_DATABASE_MOVIE"
         android:protectionLevel="normal" />
     <permission
-        android:name="com.frogobox.submission.provider.FavoriteMovieProvider.WRITE_DATABASE_MOVIE"
+        android:name="com.frogobox.mvvm.provider.FavoriteMovieProvider.WRITE_DATABASE_MOVIE"
         android:protectionLevel="normal" />
     <permission
-        android:name="com.frogobox.submission.provider.FavoriteTvShowProvider.READ_DATABASE_TV_SHOW"
+        android:name="com.frogobox.mvvm.provider.FavoriteTvShowProvider.READ_DATABASE_TV_SHOW"
         android:protectionLevel="normal" />
     <permission
-        android:name="com.frogobox.submission.provider.FavoriteTvShowProvider.WRITE_DATABASE_TV_SHOW"
+        android:name="com.frogobox.mvvm.provider.FavoriteTvShowProvider.WRITE_DATABASE_TV_SHOW"
         android:protectionLevel="normal" />
     
     <application
+        android:name="com.frogobox.base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -29,6 +30,41 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".ui.widget.FavoriteBannerWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/favorite_banner_widget_info" />
+        </receiver>
+
+        <service
+            android:name=".ui.widget.StackWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <receiver
+            android:name="com.frogobox.base.modular.service.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+        <provider
+            android:name=".provider.FavoriteMovieProvider"
+            android:authorities="com.frogobox.mvvm.provider.FavoriteMovieProvider"
+            android:exported="true"
+            android:readPermission="com.frogobox.mvvm.provider.FavoriteMovieProvider.READ_DATABASE_MOVIE"
+            android:writePermission="com.frogobox.mvvm.provider.FavoriteMovieProvider.WRITE_DATABASE_MOVIE" />
+
+        <provider
+            android:name=".provider.FavoriteTvShowProvider"
+            android:authorities="com.frogobox.mvvm.provider.FavoriteTvShowProvider"
+            android:exported="true"
+            android:readPermission="com.frogobox.mvvm.provider.FavoriteTvShowProvider.READ_DATABASE_TV_SHOW"
+            android:writePermission="com.frogobox.mvvm.provider.FavoriteTvShowProvider.WRITE_DATABASE_TV_SHOW" />
+
+
     </application>
 
 </manifest>
