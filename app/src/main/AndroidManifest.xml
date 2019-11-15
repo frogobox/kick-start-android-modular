@@ -2,6 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.frogobox.mvvm">
 
+    <permission
+        android:name="com.frogobox.submission.provider.FavoriteMovieProvider.READ_DATABASE_MOVIE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.frogobox.submission.provider.FavoriteMovieProvider.WRITE_DATABASE_MOVIE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.frogobox.submission.provider.FavoriteTvShowProvider.READ_DATABASE_TV_SHOW"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.frogobox.submission.provider.FavoriteTvShowProvider.WRITE_DATABASE_TV_SHOW"
+        android:protectionLevel="normal" />
+    
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
