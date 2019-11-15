@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+ * Created by 
+ * FrogoBox Inc License
+ * =========================================
+ * 
+ * Copyright (C) .      
+ * All rights reserved
+ * 
+ * Name     : Muhammad Faisal Amir
+ * E-mail   : faisalamircs@gmail.com
+ * Github   : github.com/amirisback
+ * LinkedIn : linkedin.com/in/faisalamircs
+ * 
+ * FrogoBox Software Industries
+ * 
+ -->
+
+<resources>
+
+    <color name="colorPrimary">#720d5d</color>
+    <color name="colorPrimaryDark">#430033</color>
+    <color name="colorAccent">#FF9800</color>
+
+    <!-- Base Color-->
+    <color name="colorBaseWhite">#FFFFFF</color>
+    <color name="colorBaseBlack">#000000</color>
+    <color name="colorBaseRed">#FF0000</color>
+    <color name="colorBaseToolbarIcon">#757575</color>
+
+    <color name="colorBackground">#E9E7E7</color>
+
+</resources>
