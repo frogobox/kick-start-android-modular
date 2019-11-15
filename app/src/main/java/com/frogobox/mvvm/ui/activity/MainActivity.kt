@@ -1,7 +1,8 @@
-package com.frogobox.mvvm
+package com.frogobox.mvvm.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.frogobox.mvvm.R
 
 class MainActivity : AppCompatActivity() {
 
