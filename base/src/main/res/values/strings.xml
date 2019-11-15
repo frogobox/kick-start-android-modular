@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">Base</string>
+
+    <string name="title_movie">Movie</string>
+    <string name="title_tv">TV</string>
+    <string name="title_setting">Setting</string>
+    <string name="title_favorite_movie">Favorite Movie</string>
+    <string name="title_favorite_tv_show">Favorite TV Show</string>
+    <string name="title_favorite">Favorite</string>
+
+    <string name="title_detail_movie">Detail Movie</string>
+    <string name="title_detail_tv_show">Detail TV Show</string>
+    <string name="title_search">Search</string>
+
+    <string name="event_empty_data">Empty Data</string>
+
+    <string name="text_succes_add_favorite">Success add to favorite</string>
+    <string name="text_succes_delete_favorite">Success delete from favorite</string>
+
+    <string name="text_release_reminder_0">Release Reminder</string>
+    <string name="text_release_reminder_1">Reminder showing the movie that released today</string>
+    <string name="text_daily_reminder_0">Daily Reminder</string>
+    <string name="text_daily_reminder_1">Reminder for return to app</string>
+    <string name="text_select_language">Select Language</string>
+
+    <string name="notification_daily_reminder_title">Don\'t Forget Check Film Today</string>
+    <string name="notification_daily_reminder_text">I miss you</string>
+    <string name="notification_release_today_title">New Movies!</string>
+    <string name="notification_release_today_text"> has been release today!</string>
+
 </resources>
