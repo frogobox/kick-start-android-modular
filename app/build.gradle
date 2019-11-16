@@ -13,6 +13,23 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    // Declaration app name
+    def nameApp = "Catalogue Movie"
+
+    def versionPropsFile = file('version.properties')
+    Properties versionProps = new Properties()
+
+    if (versionPropsFile.canRead()) {
+        versionProps.load(new FileInputStream(versionPropsFile))
+    } else {
+        versionProps['VERSION_CODE'] = '0'
+    }
+
+    def code = versionProps['VERSION_CODE'].toInteger()
+
+    versionProps['VERSION_CODE'] = code.toString()
+    versionProps.store(versionPropsFile.newWriter(), null)
+
     compileSdkVersion 29
     buildToolsVersion "29.0.1"
     defaultConfig {
@@ -22,11 +39,69 @@ android {
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // Declaration apk / aab name
+        def nameAPK = "catalogue-movie"
+
+        // Declaration apps name debug mode
+        def debugAttribute = " Development"
+        def nameAppDebug = nameApp + debugAttribute
+
+        // Declaration admob id for debug
+        def debugAdmobPublisherId = "ca-app-pub-3940256099942544~3347511713"
+        def debugAdmobInterstitial = "ca-app-pub-3940256099942544/1033173712"
+        def debugAdmobVideo = "ca-app-pub-3940256099942544/5224354917"
+        def debugAdmobBanner = "ca-app-pub-3940256099942544/6300978111"
+
+        setProperty("archivesBaseName", nameAPK + versionName + "#" + code + "-"
+                + new Date().format('ddMMyy'))
+
+        resConfigs "en", "id"
+        vectorDrawables.useSupportLibrary = true
+
+        // Inject app name for debug
+        resValue "string", "app_name", nameAppDebug
+
+        // Inject admob id for debug
+        resValue "string", "admob_publisher_id", debugAdmobPublisherId
+        resValue "string", "admob_interstitial", debugAdmobInterstitial
+        resValue "string", "admob_video", debugAdmobVideo
+        resValue "string", "admob_banner", debugAdmobBanner
+
+
     }
+    signingConfigs {
+        release {
+            // You need to specify either an absolute path or include the
+            // keystore file in the same directory as the build.gradle file.
+            storeFile file("frogoboxdev.jks")
+            storePassword "cronoclez"
+            keyAlias "frogobox"
+            keyPassword "xeonranger"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // Generated Signed APK / AAB
+            signingConfig signingConfigs.release
+
+            // Declaration admob id for release
+            def releaseAdmobPublisherId = "ca-app-pub-3940256099942544~3347511713"
+            def releaseAdmobInterstitial = "ca-app-pub-3940256099942544/1033173712"
+            def releaseAdmobVideo = "ca-app-pub-3940256099942544/5224354917"
+            def releaseAdmobBanner = "ca-app-pub-3940256099942544/6300978111"
+
+            // Inject app name for release
+            resValue "string", "app_name", nameApp
+
+            // Inject admob id for release
+            resValue "string", "admob_publisher_id", releaseAdmobPublisherId
+            resValue "string", "admob_interstitial", releaseAdmobInterstitial
+            resValue "string", "admob_video", releaseAdmobVideo
+            resValue "string", "admob_banner", releaseAdmobBanner
         }
     }
 }
