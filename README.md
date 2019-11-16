@@ -13,7 +13,7 @@ Trying best of my mind clustering code architecture
 https://play.google.com/store/apps/details?id=com.frogobox.mvvm
 
 # Screen Shoot Apps
-![ScreenShoot Apps](documentation/ss_play_store.png)
+![ScreenShoot Apps](documentation/ss_play_store.jpg?raw=true)
 
 # Attention !!!
 Please enjoy and don't forget fork and give a star
