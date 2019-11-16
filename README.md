@@ -5,9 +5,15 @@ Trying best of my mind clustering code architecture
 - Repository Pattern
 - MVVM Pattern
 - Room Database
+- Retrofit
+- Chuck HTTP Inceptor
+- RxJava RxAndroid
 
 # Link Apps On Play Store
 https://play.google.com/store/apps/details?id=com.frogobox.mvvm
 
+# Screen Shoot Apps
+![ScreenShoot Apps](documentation/ss_play_store.png)
 
-![ScreenShoot Apps](https://github.com/amirisback/android-architecture-by-amirisback/projectname/branch/path/to/img.png)
+# Attention !!!
+Please enjoy and don't forget fork and give a star
