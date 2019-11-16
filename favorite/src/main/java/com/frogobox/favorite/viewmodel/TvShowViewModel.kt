@@ -1,4 +1,4 @@
-package com.frogobox.favorite
+package com.frogobox.favorite.viewmodel
 
 /**
  * Created by Faisal Amir

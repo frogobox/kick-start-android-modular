@@ -1,4 +1,8 @@
-package com.frogobox.favorite
+package com.frogobox.favorite.util
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.frogobox.base.ui.BaseActivity
 
 /**
  * Created by Faisal Amir
@@ -17,3 +21,11 @@ package com.frogobox.favorite
  * com.frogobox.favorite
  *
  */
+open class BaseFavoriteActivity : BaseActivity() {
+
+    fun <T : ViewModel> obtainViewModel(viewModelClass: Class<T>) =
+        ViewModelProvider(this,
+            ViewModelFactory.getInstance(application)
+        ).get(viewModelClass)
+
+}
