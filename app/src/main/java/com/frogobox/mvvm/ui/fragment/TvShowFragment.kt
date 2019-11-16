@@ -2,10 +2,10 @@ package com.frogobox.mvvm.ui.fragment
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -13,7 +13,6 @@ import com.frogobox.base.modular.model.TvShow
 import com.frogobox.base.modular.rvadapter.TvShowAdapter
 import com.frogobox.base.ui.BaseFragment
 import com.frogobox.base.ui.adapter.BaseListener
-
 import com.frogobox.mvvm.R
 import com.frogobox.mvvm.ui.activity.DetailTvShowActivity
 import com.frogobox.mvvm.ui.activity.MainActivity
@@ -50,11 +49,11 @@ class TvShowFragment : BaseFragment(),
     private fun setupViewModel() {
         mViewModel = (activity as MainActivity).obtainMainViewModel().apply {
 
-            tvShowListLive.observe(this@TvShowFragment, Observer {
+            tvShowListLive.observe(viewLifecycleOwner, Observer {
                 setupRecyclerView(it)
             })
 
-            eventShowProgress.observe(this@TvShowFragment, Observer {
+            eventShowProgress.observe(viewLifecycleOwner, Observer {
                 setupEventProgressView(progressBar, it)
             })
 

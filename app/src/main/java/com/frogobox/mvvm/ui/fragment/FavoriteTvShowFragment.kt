@@ -2,17 +2,16 @@ package com.frogobox.mvvm.ui.fragment
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.frogobox.base.modular.model.FavoriteTvShow
 import com.frogobox.base.modular.rvadapter.FavoriteTvShowAdapter
 import com.frogobox.base.ui.BaseFragment
 import com.frogobox.base.ui.adapter.BaseListener
-
 import com.frogobox.mvvm.R
 import com.frogobox.mvvm.ui.activity.DetailTvShowActivity
 import com.frogobox.mvvm.ui.activity.MainActivity
@@ -26,7 +25,7 @@ import kotlinx.android.synthetic.main.fragment_tv_movie_grid.*
 class FavoriteTvShowFragment : BaseFragment(),
     BaseListener<FavoriteTvShow> {
 
-    private lateinit var mViewModel : FavoriteTvShowViewModel
+    private lateinit var mViewModel: FavoriteTvShowViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,22 +41,22 @@ class FavoriteTvShowFragment : BaseFragment(),
         getTvShow()
     }
 
-    private fun getTvShow(){
+    private fun getTvShow() {
         mViewModel.getFavoriteTvShow()
     }
 
     private fun setupViewModel() {
         mViewModel = (activity as MainActivity).obtainFavoriteTvShowViewModel().apply {
 
-            favTvShowListLive.observe(this@FavoriteTvShowFragment, Observer {
+            favTvShowListLive.observe(viewLifecycleOwner, Observer {
                 setupRecyclerView(it)
             })
 
-            eventShowProgress.observe(this@FavoriteTvShowFragment, Observer {
+            eventShowProgress.observe(viewLifecycleOwner, Observer {
                 setupEventProgressView(progressBar, it)
             })
 
-            eventIsEmpty.observe(this@FavoriteTvShowFragment, Observer {
+            eventIsEmpty.observe(viewLifecycleOwner, Observer {
                 setupEventEmptyView(empty_view, it)
             })
 
@@ -80,7 +79,13 @@ class FavoriteTvShowFragment : BaseFragment(),
     }
 
     override fun onItemClicked(data: FavoriteTvShow) {
-        context?.let { baseStartActivity<DetailTvShowActivity, FavoriteTvShow>(it, DetailTvShowActivity.EXTRA_FAV_TV, data) }
+        context?.let {
+            baseStartActivity<DetailTvShowActivity, FavoriteTvShow>(
+                it,
+                DetailTvShowActivity.EXTRA_FAV_TV,
+                data
+            )
+        }
     }
 
     override fun onItemLongClicked(data: FavoriteTvShow) {
