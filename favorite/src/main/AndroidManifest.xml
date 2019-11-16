@@ -4,7 +4,6 @@
 
     <uses-permission android:name="com.frogobox.mvvm.provider.FavoriteMovieProvider.READ_DATABASE_MOVIE" />
     <uses-permission android:name="com.frogobox.mvvm.provider.FavoriteMovieProvider.WRITE_DATABASE_MOVIE" />
-
     <uses-permission android:name="com.frogobox.mvvm.provider.FavoriteTvShowProvider.READ_DATABASE_TV_SHOW" />
     <uses-permission android:name="com.frogobox.mvvm.provider.FavoriteTvShowProvider.WRITE_DATABASE_TV_SHOW" />
 
@@ -16,6 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.activity.DetailTvShowActivity"></activity>
+        <activity android:name=".ui.activity.DetailMovieActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

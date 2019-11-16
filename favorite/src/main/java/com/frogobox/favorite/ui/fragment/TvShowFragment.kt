@@ -1,4 +1,4 @@
-package com.frogobox.favorite.fragment
+package com.frogobox.favorite.ui.fragment
 
 
 import android.os.Bundle
