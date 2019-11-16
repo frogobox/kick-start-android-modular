@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.activity.DetailTvShowActivity"></activity>
         <activity android:name=".ui.activity.DetailMovieActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
