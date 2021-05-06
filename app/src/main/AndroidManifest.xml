@@ -23,7 +23,7 @@
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.SettingActivity"></activity>
+        <activity android:name=".ui.activity.SettingActivity" />
         <activity android:name=".ui.activity.SearchTvShowActivity" />
         <activity android:name=".ui.activity.SearchMovieActivity" />
         <activity android:name=".ui.activity.DetailTvShowActivity" />
@@ -56,13 +56,14 @@
             android:exported="true" />
 
         <provider
-            android:name=".provider.FavoriteMovieProvider"
+            android:name="com.frogobox.mvvm.provider.FavoriteMovieProvider"
             android:authorities="com.frogobox.mvvm.provider.FavoriteMovieProvider"
             android:exported="true"
             android:readPermission="com.frogobox.mvvm.provider.FavoriteMovieProvider.READ_DATABASE_MOVIE"
             android:writePermission="com.frogobox.mvvm.provider.FavoriteMovieProvider.WRITE_DATABASE_MOVIE" />
+
         <provider
-            android:name=".provider.FavoriteTvShowProvider"
+            android:name="com.frogobox.mvvm.provider.FavoriteTvShowProvider"
             android:authorities="com.frogobox.mvvm.provider.FavoriteTvShowProvider"
             android:exported="true"
             android:readPermission="com.frogobox.mvvm.provider.FavoriteTvShowProvider.READ_DATABASE_TV_SHOW"

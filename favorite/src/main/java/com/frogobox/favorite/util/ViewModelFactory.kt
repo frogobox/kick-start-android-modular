@@ -6,6 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.frogobox.base.modular.source.Repository
 import com.frogobox.base.util.Injection
+import com.frogobox.favorite.viewmodel.DetailMovieViewModel
+import com.frogobox.favorite.viewmodel.DetailTvShowViewModel
+import com.frogobox.favorite.viewmodel.MovieViewModel
+import com.frogobox.favorite.viewmodel.TvShowViewModel
 
 /**
  * Created by Faisal Amir
@@ -34,17 +38,17 @@ class ViewModelFactory private constructor(
         with(modelClass) {
             when {
 
-//                isAssignableFrom(MovieViewModel::class.java) ->
-//                    MovieViewModel(mApplication, repository)
-//
-//                isAssignableFrom(TvShowViewModel::class.java) ->
-//                    TvShowViewModel(mApplication, repository)
-//
-//                isAssignableFrom(DetailMovieViewModel::class.java) ->
-//                    DetailMovieViewModel(mApplication, repository)
-//
-//                isAssignableFrom(DetailTvShowViewModel::class.java) ->
-//                    DetailTvShowViewModel(mApplication, repository)
+                isAssignableFrom(MovieViewModel::class.java) ->
+                    MovieViewModel(mApplication, repository)
+
+                isAssignableFrom(TvShowViewModel::class.java) ->
+                    TvShowViewModel(mApplication, repository)
+
+                isAssignableFrom(DetailMovieViewModel::class.java) ->
+                    DetailMovieViewModel(mApplication, repository)
+
+                isAssignableFrom(DetailTvShowViewModel::class.java) ->
+                    DetailTvShowViewModel(mApplication, repository)
 
 
                 else ->

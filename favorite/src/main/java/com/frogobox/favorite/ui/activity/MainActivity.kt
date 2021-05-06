@@ -15,7 +15,7 @@ class MainActivity : BaseFavoriteActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mActivity.setTitle(getString(R.string.title_favorite))
+        mActivity.title = getString(R.string.title_favorite)
         setupViewPager()
     }
 
