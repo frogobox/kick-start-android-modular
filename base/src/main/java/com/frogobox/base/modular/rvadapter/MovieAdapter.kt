@@ -8,7 +8,7 @@ import com.frogobox.base.modular.model.Movie
 import com.frogobox.base.ui.adapter.BaseViewAdapter
 import com.frogobox.base.ui.adapter.BaseViewHolder
 import com.frogobox.base.util.Helper.Func.removeBackSlash
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_grid_tv_movie.view.*
 
 /**
@@ -49,7 +49,7 @@ class MovieAdapter :
         override fun initComponent(data: Movie) {
             super.initComponent(data)
             val poster = data.poster_path?.let { removeBackSlash(it) }
-            Picasso.get().load(BuildConfig.TMDB_PATH_URL_IMAGE + poster).into(ivPoster)
+            Glide.with(mContext).load(BuildConfig.TMDB_PATH_URL_IMAGE + poster).into(ivPoster)
             tvTitle.text = data.title
             tvOverview.text = data.overview
         }
