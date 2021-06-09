@@ -13,7 +13,7 @@ import com.frogobox.base.util.Helper
 import com.frogobox.mvvm.R
 import com.frogobox.mvvm.util.BaseAppActivity
 import com.frogobox.mvvm.viewmodel.DetailTvShowViewModel
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailTvShowActivity : BaseAppActivity(),
@@ -71,14 +71,14 @@ class DetailTvShowActivity : BaseAppActivity(),
         stateExtra({
             extraTvShow = baseGetExtraData(EXTRA_TV)
             val poster = extraTvShow.backdrop_path?.let { Helper.Func.removeBackSlash(it) }
-            Picasso.get().load(BuildConfig.TMDB_PATH_URL_IMAGE + poster).into(iv_poster)
+            Glide.with(this).load("${BuildConfig.TMDB_PATH_URL_IMAGE}$poster").into(iv_poster)
             tv_title.text = extraTvShow.name
             tv_overview.text = extraTvShow.overview
             extraTvShow.id?.let { mViewModel.getFavoriteTvShow(it) }
         }) {
             extraFavoriteTvShow = baseGetExtraData(EXTRA_FAV_TV)
             val poster = extraFavoriteTvShow.backdrop_path?.let { Helper.Func.removeBackSlash(it) }
-            Picasso.get().load(BuildConfig.TMDB_PATH_URL_IMAGE + poster).into(iv_poster)
+            Glide.with(this).load("${BuildConfig.TMDB_PATH_URL_IMAGE}$poster").into(iv_poster)
             tv_title.text = extraFavoriteTvShow.name
             tv_overview.text = extraFavoriteTvShow.overview
             extraFavoriteTvShow.id?.let { mViewModel.getFavoriteTvShow(it) }

@@ -3,12 +3,12 @@ package com.frogobox.base.modular.rvadapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.frogobox.base.BuildConfig
 import com.frogobox.base.modular.model.FavoriteTvShow
 import com.frogobox.base.ui.adapter.BaseViewAdapter
 import com.frogobox.base.ui.adapter.BaseViewHolder
 import com.frogobox.base.util.Helper
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_list_tv_movie.view.*
 
 /**
@@ -49,7 +49,7 @@ class FavoriteTvShowAdapter :
         override fun initComponent(data: FavoriteTvShow) {
             super.initComponent(data)
             val poster = data.poster_path?.let { Helper.Func.removeBackSlash(it) }
-            Picasso.get().load(BuildConfig.TMDB_PATH_URL_IMAGE + poster).into(ivPoster)
+            Glide.with(mContext).load(BuildConfig.TMDB_PATH_URL_IMAGE + poster).into(ivPoster)
             tvTitle.text = data.name
             tvOverview.text = data.overview
         }

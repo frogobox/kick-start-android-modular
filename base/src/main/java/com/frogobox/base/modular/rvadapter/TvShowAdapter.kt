@@ -8,7 +8,7 @@ import com.frogobox.base.modular.model.TvShow
 import com.frogobox.base.ui.adapter.BaseViewAdapter
 import com.frogobox.base.ui.adapter.BaseViewHolder
 import com.frogobox.base.util.Helper
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_grid_tv_movie.view.*
 
 /**
@@ -48,7 +48,7 @@ class TvShowAdapter : BaseViewAdapter<TvShow, TvShowAdapter.TvShowViewHolder>() 
         override fun initComponent(data: TvShow) {
             super.initComponent(data)
             val poster = data.poster_path?.let { Helper.Func.removeBackSlash(it) }
-            Picasso.get().load(BuildConfig.TMDB_PATH_URL_IMAGE + poster).into(ivPoster)
+            Glide.with(mContext).load(BuildConfig.TMDB_PATH_URL_IMAGE + poster).into(ivPoster)
             tvTitle.text = data.name
             tvOverview.text = data.overview
         }

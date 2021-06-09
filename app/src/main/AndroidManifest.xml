@@ -68,6 +68,11 @@
             android:exported="true"
             android:readPermission="com.frogobox.mvvm.provider.FavoriteTvShowProvider.READ_DATABASE_TV_SHOW"
             android:writePermission="com.frogobox.mvvm.provider.FavoriteTvShowProvider.WRITE_DATABASE_TV_SHOW" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_publisher_id" />
+
     </application>
 
 </manifest>

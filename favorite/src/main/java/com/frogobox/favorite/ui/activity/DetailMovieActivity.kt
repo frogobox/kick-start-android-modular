@@ -13,6 +13,7 @@ import com.frogobox.base.util.Helper
 import com.frogobox.favorite.R
 import com.frogobox.favorite.util.BaseFavoriteActivity
 import com.frogobox.favorite.viewmodel.DetailMovieViewModel
+import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail.*
 

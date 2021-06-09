@@ -13,7 +13,7 @@ import com.frogobox.base.util.Helper
 import com.frogobox.mvvm.R
 import com.frogobox.mvvm.util.BaseAppActivity
 import com.frogobox.mvvm.viewmodel.DetailMovieViewModel
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailMovieActivity : BaseAppActivity(),
@@ -71,14 +71,14 @@ class DetailMovieActivity : BaseAppActivity(),
         stateExtra({
             extraMovie = baseGetExtraData(EXTRA_MOVIE)
             val poster = extraMovie.backdrop_path?.let { Helper.Func.removeBackSlash(it) }
-            Picasso.get().load(BuildConfig.TMDB_PATH_URL_IMAGE + poster).into(iv_poster)
+            Glide.with(this).load("${BuildConfig.TMDB_PATH_URL_IMAGE}$poster").into(iv_poster)
             tv_title.text = extraMovie.title
             tv_overview.text = extraMovie.overview
             extraMovie.id?.let { mViewModel.getFavoriteMovie(it) }
         }) {
             extraFavoriteMovie = baseGetExtraData(EXTRA_FAV_MOVIE)
             val poster = extraFavoriteMovie.backdrop_path?.let { Helper.Func.removeBackSlash(it) }
-            Picasso.get().load(BuildConfig.TMDB_PATH_URL_IMAGE + poster).into(iv_poster)
+            Glide.with(this).load("${BuildConfig.TMDB_PATH_URL_IMAGE}$poster").into(iv_poster)
             tv_title.text = extraFavoriteMovie.title
             tv_overview.text = extraFavoriteMovie.overview
             extraFavoriteMovie.id?.let { mViewModel.getFavoriteMovie(it) }

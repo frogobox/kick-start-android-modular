@@ -130,8 +130,7 @@ class StackRemoteViewFactory(private val mContext: Context, private val intent: 
         // -----------------------------------------------------------------------------------------
         mRemoteViews.setTextViewText(R.id.textViewWidget, mWidgetItems[position].title)
         try {
-            val b = Picasso.get()
-                .load(BuildConfig.TMDB_PATH_URL_IMAGE + mWidgetItems[position].backdrop_path).get()
+            val b = Picasso.get().load(BuildConfig.TMDB_PATH_URL_IMAGE + mWidgetItems[position].backdrop_path).get()
             mRemoteViews.setImageViewBitmap(R.id.imageViewWidget, b)
         } catch (e: IOException) {
             e.printStackTrace()
