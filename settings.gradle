@@ -1,2 +1,2 @@
 include ':app', ':base', ':favorite'
-rootProject.name='mvvm'
+rootProject.name='movie'

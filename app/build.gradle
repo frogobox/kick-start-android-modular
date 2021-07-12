@@ -5,72 +5,103 @@ apply plugin: 'kotlin-kapt'
 
 android {
 
+    def versionMajor = 1
+    def versionMinor = 0
+    def versionPatch = 0
+
+    def appDomain = "com"
+    def appDevConsole = "frogobox"
+    def appName = "movie"
+
+    def projectApplicationId = "$appDomain.$appDevConsole.$appName"
+    def projectVersionCode = (versionMajor * 100) + (versionMinor * 10) + (versionPatch * 1)
+    def projectVersionName = "$versionMajor.$versionMinor.$versionPatch"
+
+    // Declaration app name
+    def nameApp = "Catalogue Movie"
+    def nameAppLower = nameApp.toLowerCase()
+
+    // Declaration apk / aab name
+    def nameAPK = nameAppLower.replace(" ", "-")
+
+    // Declaration Room DB Name
+    def nameDB = '"catalogue_movie.db"'
+
+    // Declaration admob id for debug
+    def debugAdmobPublisherId = "ca-app-pub-3940256099942544~3347511713"
+    def debugAdmobBanner = "ca-app-pub-3940256099942544/6300978111"
+    def debugAdmobInterstitial = "ca-app-pub-3940256099942544/1033173712"
+    def debugAdmobInterstitialVideo = "ca-app-pub-3940256099942544/8691691433"
+    def debugAdmobRewarded = "ca-app-pub-3940256099942544/5224354917"
+    def debugAdmobRewardedInterstitial = "ca-app-pub-3940256099942544/5354046379"
+    def debugAdmobNativeAdvanced = "ca-app-pub-3940256099942544/2247696110"
+    def debugAdmobNativeAdvancedVideo = "ca-app-pub-3940256099942544/1044960115"
+
+    // Declaration admob id for release
+    def releaseAdmobPublisherId = ""
+    def releaseAdmobBanner = ""
+    def releaseAdmobInterstitial = ""
+    def releaseAdmobInterstitialVideo = ""
+    def releaseAdmobRewarded = ""
+    def releaseAdmobRewardedInterstitial = ""
+    def releaseAdmobNativeAdvanced = ""
+    def releaseAdmobNativeAdvancedVideo = ""
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
-    // Declaration app name
-    def nameApp = "Catalogue Movie"
+    compileSdkVersion projectCompileSdkVersion
+    buildToolsVersion projectBuildToolsVersion
 
-    def versionPropsFile = file('version.properties')
-    Properties versionProps = new Properties()
-
-    if (versionPropsFile.canRead()) {
-        versionProps.load(new FileInputStream(versionPropsFile))
-    } else {
-        versionProps['VERSION_CODE'] = '0'
-    }
-
-    def code = versionProps['VERSION_CODE'].toInteger()
-
-    versionProps['VERSION_CODE'] = code.toString()
-    versionProps.store(versionPropsFile.newWriter(), null)
-
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
     defaultConfig {
-        applicationId "com.frogobox.mvvm"
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0.0"
+        applicationId projectApplicationId
+        minSdkVersion projectMinSdkVersion
+        targetSdkVersion projectTargetSdkVersion
+        versionCode projectVersionCode
+        versionName projectVersionName
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        // Declaration apk / aab name
-        def nameAPK = "catalogue-movie"
+        vectorDrawables.useSupportLibrary = true
+
+        // Declaration build config
+        buildConfigField("String", "DATABASE_NAME", nameDB)
 
         // Declaration apps name debug mode
         def debugAttribute = " Development"
         def nameAppDebug = nameApp + debugAttribute
 
-        // Declaration admob id for debug
-        def debugAdmobPublisherId = "ca-app-pub-3940256099942544~3347511713"
-        def debugAdmobInterstitial = "ca-app-pub-3940256099942544/1033173712"
-        def debugAdmobVideo = "ca-app-pub-3940256099942544/5224354917"
-        def debugAdmobBanner = "ca-app-pub-3940256099942544/6300978111"
-
-        setProperty("archivesBaseName", nameAPK + versionName + "#" + code + "-"
+        // Naming APK // AAB
+        setProperty("archivesBaseName", nameAPK + versionName + "#" + versionCode + "-"
                 + new Date().format('ddMMyy'))
 
         resConfigs "en", "id"
-        vectorDrawables.useSupportLibrary = true
 
         // Inject app name for debug
         resValue "string", "app_name", nameAppDebug
 
         // Inject admob id for debug
         resValue "string", "admob_publisher_id", debugAdmobPublisherId
-        resValue "string", "admob_interstitial", debugAdmobInterstitial
-        resValue "string", "admob_video", debugAdmobVideo
         resValue "string", "admob_banner", debugAdmobBanner
-
+        resValue "string", "admob_interstitial", debugAdmobInterstitial
+        resValue "string", "admob_interstitial_video", debugAdmobInterstitialVideo
+        resValue "string", "admob_rewarded", debugAdmobRewarded
+        resValue "string", "admob_rewarded_interstitial", debugAdmobRewardedInterstitial
+        resValue "string", "admob_native_advanced", debugAdmobNativeAdvanced
+        resValue "string", "admob_native_advanced_video", debugAdmobNativeAdvancedVideo
 
     }
+
     signingConfigs {
         release {
             // You need to specify either an absolute path or include the
@@ -86,23 +117,23 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
             // Generated Signed APK / AAB
             signingConfig signingConfigs.release
-
-            // Declaration admob id for release
-            def releaseAdmobPublisherId = "ca-app-pub-3940256099942544~3347511713"
-            def releaseAdmobInterstitial = "ca-app-pub-3940256099942544/1033173712"
-            def releaseAdmobVideo = "ca-app-pub-3940256099942544/5224354917"
-            def releaseAdmobBanner = "ca-app-pub-3940256099942544/6300978111"
 
             // Inject app name for release
             resValue "string", "app_name", nameApp
 
             // Inject admob id for release
             resValue "string", "admob_publisher_id", releaseAdmobPublisherId
-            resValue "string", "admob_interstitial", releaseAdmobInterstitial
-            resValue "string", "admob_video", releaseAdmobVideo
             resValue "string", "admob_banner", releaseAdmobBanner
+            resValue "string", "admob_interstitial", releaseAdmobInterstitial
+            resValue "string", "admob_interstitial_video", releaseAdmobInterstitialVideo
+            resValue "string", "admob_rewarded", releaseAdmobRewarded
+            resValue "string", "admob_rewarded_interstitial", releaseAdmobRewardedInterstitial
+            resValue "string", "admob_native_advanced", releaseAdmobNativeAdvanced
+            resValue "string", "admob_native_advanced_video", releaseAdmobNativeAdvancedVideo
+
         }
     }
 }

@@ -5,6 +5,13 @@ apply plugin: 'kotlin-kapt'
 
 android {
 
+    def versionMajor = 1
+    def versionMinor = 0
+    def versionPatch = 0
+
+    def projectVersionCode = (versionMajor * 100) + (versionMinor * 10) + (versionPatch * 1)
+    def projectVersionName = "$versionMajor.$versionMinor.$versionPatch"
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -14,14 +21,19 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    buildFeatures {
+        viewBinding = true
+    }
+
+    compileSdkVersion projectCompileSdkVersion
+    buildToolsVersion projectBuildToolsVersion
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0.0"
+
+        minSdkVersion projectMinSdkVersion
+        targetSdkVersion projectTargetSdkVersion
+        versionCode projectVersionCode
+        versionName projectVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -40,8 +52,6 @@ android {
         buildConfigField("String", "TMDB_URL_SEARCH_TV_SHOW", '"3/search/tv"')
 
         buildConfigField("String", "TMDB_URL_RELEASE_BY_DATE", '"3/discover/movie?api_key={API KEY}&primary_release_date.gte={TODAY DATE}&primary_release_date.lte={TODAY DATE}"')
-
-
 
     }
 

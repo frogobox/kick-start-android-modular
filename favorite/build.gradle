@@ -5,6 +5,25 @@ apply plugin: 'kotlin-kapt'
 
 android {
 
+    def versionMajor = 1
+    def versionMinor = 0
+    def versionPatch = 0
+
+    def appDomain = "com"
+    def appDevConsole = "frogobox"
+    def appName = "favorite"
+
+    def projectApplicationId = "$appDomain.$appDevConsole.$appName"
+    def projectVersionCode = (versionMajor * 100) + (versionMinor * 10) + (versionPatch * 1)
+    def projectVersionName = "$versionMajor.$versionMinor.$versionPatch"
+
+    // Declaration app name
+    def nameApp = "Favorite Movie"
+    def nameAppLower = nameApp.toLowerCase()
+
+    // Declaration apk / aab name
+    def nameAPK = nameAppLower.replace(" ", "-")
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -14,18 +33,30 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    buildFeatures {
+        viewBinding = true
+    }
 
+    compileSdkVersion projectCompileSdkVersion
+    buildToolsVersion projectBuildToolsVersion
 
     defaultConfig {
-        applicationId "com.frogobox.favorite"
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0.0"
+        applicationId projectApplicationId
+        minSdkVersion projectMinSdkVersion
+        targetSdkVersion projectTargetSdkVersion
+        versionCode projectVersionCode
+        versionName projectVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // Declaration apps name debug mode
+        def debugAttribute = " Development"
+        def nameAppDebug = nameApp + debugAttribute
+
+        // Naming APK // AAB
+        setProperty("archivesBaseName", nameAPK + versionName + "#" + versionCode + "-"
+                + new Date().format('ddMMyy'))
+
     }
 
     buildTypes {
