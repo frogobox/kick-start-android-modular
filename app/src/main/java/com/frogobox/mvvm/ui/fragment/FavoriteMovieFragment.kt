@@ -10,8 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.frogobox.base.modular.model.FavoriteMovie
 import com.frogobox.base.modular.rvadapter.FavoriteMovieAdapter
-import com.frogobox.base.ui.BaseFragment
-import com.frogobox.base.ui.adapter.BaseListener
+import com.frogobox.base.BaseFragment
+import com.frogobox.base.BaseListener
 import com.frogobox.mvvm.R
 import com.frogobox.mvvm.ui.activity.DetailMovieActivity
 import com.frogobox.mvvm.ui.activity.MainActivity

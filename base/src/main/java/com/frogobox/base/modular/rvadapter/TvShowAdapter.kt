@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.frogobox.base.BuildConfig
 import com.frogobox.base.modular.model.TvShow
-import com.frogobox.base.ui.adapter.BaseViewAdapter
-import com.frogobox.base.ui.adapter.BaseViewHolder
+import com.frogobox.base.BaseViewAdapter
+import com.frogobox.base.BaseViewHolder
 import com.frogobox.base.util.Helper
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_grid_tv_movie.view.*

@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.frogobox.base.BuildConfig
 import com.frogobox.base.modular.model.FavoriteTvShow
-import com.frogobox.base.ui.adapter.BaseViewAdapter
-import com.frogobox.base.ui.adapter.BaseViewHolder
+import com.frogobox.base.BaseViewAdapter
+import com.frogobox.base.BaseViewHolder
 import com.frogobox.base.util.Helper
 import kotlinx.android.synthetic.main.item_list_tv_movie.view.*
 

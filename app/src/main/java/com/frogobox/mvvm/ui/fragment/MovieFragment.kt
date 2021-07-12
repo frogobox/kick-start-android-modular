@@ -10,8 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.frogobox.base.modular.model.Movie
 import com.frogobox.base.modular.rvadapter.MovieAdapter
-import com.frogobox.base.ui.BaseFragment
-import com.frogobox.base.ui.adapter.BaseListener
+import com.frogobox.base.BaseFragment
+import com.frogobox.base.BaseListener
 import com.frogobox.mvvm.R
 import com.frogobox.mvvm.ui.activity.DetailMovieActivity
 import com.frogobox.mvvm.ui.activity.MainActivity

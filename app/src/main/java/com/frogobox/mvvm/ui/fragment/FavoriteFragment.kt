@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.frogobox.base.ui.BaseFragment
+import com.frogobox.base.BaseFragment
 import com.frogobox.base.util.PagerHelper
 
 import com.frogobox.mvvm.R

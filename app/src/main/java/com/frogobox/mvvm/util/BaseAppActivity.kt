@@ -2,7 +2,7 @@ package com.frogobox.mvvm.util
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.frogobox.base.ui.BaseActivity
+import com.frogobox.base.BaseActivity
 
 /**
  * Created by Faisal Amir

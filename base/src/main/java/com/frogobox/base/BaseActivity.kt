@@ -1,4 +1,4 @@
-package com.frogobox.base.ui
+package com.frogobox.base
 
 import android.content.Context
 import android.content.Intent
@@ -10,7 +10,6 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.frogobox.base.BaseHelper
 
 /**
  * Created by Faisal Amir

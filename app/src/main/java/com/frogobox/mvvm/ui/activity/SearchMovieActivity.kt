@@ -7,7 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.frogobox.base.modular.model.Movie
 import com.frogobox.base.modular.rvadapter.MovieAdapter
-import com.frogobox.base.ui.adapter.BaseListener
+import com.frogobox.base.BaseListener
 import com.frogobox.mvvm.R
 import com.frogobox.mvvm.util.BaseAppActivity
 import com.frogobox.mvvm.viewmodel.SearchMovieViewModel

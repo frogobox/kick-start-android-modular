@@ -1,4 +1,4 @@
-package com.frogobox.base.ui.adapter
+package com.frogobox.base
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView

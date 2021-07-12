@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.frogobox.base.modular.model.TvShow
 import com.frogobox.base.modular.rvadapter.TvShowAdapter
-import com.frogobox.base.ui.BaseFragment
-import com.frogobox.base.ui.adapter.BaseListener
+import com.frogobox.base.BaseFragment
+import com.frogobox.base.BaseListener
 import com.frogobox.mvvm.R
 import com.frogobox.mvvm.ui.activity.DetailTvShowActivity
 import com.frogobox.mvvm.ui.activity.MainActivity
