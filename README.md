@@ -1,5 +1,10 @@
-## android-architecture
-Trying best of my mind clustering code architecture
+
+![ScreenShoot Apps](docs/image/ss_banner.png?raw=true)
+
+## About This Project
+- Template Reuse Code For Monetizing Apps
+- Template Code Monetize FrogoBox For Android Kick Start Project
+- Trying best of my mind clustering code architecture
 - Repository Pattern
 - MVVM Pattern
 - Room Database
