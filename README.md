@@ -9,18 +9,20 @@ Trying best of my mind clustering code architecture
 - Inheritance RecyclerViewAdapter (BaseViewAdapter, BasViewHolder, BaseListener)
 - Inheritance AdmobActivity (BaseAdmobActivity)
 - Certainly Clean Code
-- Link Apps On Play Store [Click Here](https://play.google.com/store/apps/details?id=com.frogobox.movie)
 
-## Screen Shoot Apps
-
-### UI Apps
+## Screen Shoot UI Apps
 | UI 1 | UI 2 | UI 3 |
 |:----:|:----:|:----:|
 |<span align="center"><img width="200px" height="370px" src="docs/image/ss_1.png"></span> | <span align="center"><img width="200px" height="370px" src="docs/image/ss_2.png"></span> | <span align="center"><img width="200px" height="370px" src="docs/image/ss_3.png"></span> |
 
-### Playstore
-![ScreenShoot Apps](docs/image/ss_play_store.jpg?raw=true)
-
+## Helper Sample Link
+- frogo-recycler-view [Click Here](https://github.com/amirisback/frogo-recycler-view)
+- frogo-admob [Click Here](https://github.com/amirisback/frogo-admob)
+- frogo-ui-kit [Click Here](https://github.com/amirisback/frogo-ui-kit)
+- frogo-log [Click Here](https://github.com/amirisback/frogo-log)
+- frogo-notification [Click Here](https://github.com/amirisback/frogo-notification)
+- MVVM [Click Here](https://github.com/amirisback/android-architecture-modularization)
+- Awesome API Implemented [Click Here](https://github.com/amirisback/awesome-frogo-consumable-apps)
 
 ## Architecture
 -   Pattern  [Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)  (MVVM) facilitating a [separation](https://en.wikipedia.org/wiki/Separation_of_concerns) of development of the graphical user interface.
@@ -42,23 +44,6 @@ Min API level is set to 21, so the presented approach is suitable for over 94% o
 -   [Dagger2](https://dagger.dev/)  - dependency injector for replacement all Factory classes.
 -   [Retrofit](https://square.github.io/retrofit/)  - type-safe HTTP client.
 -   [Glide](https://github.com/bumptech/glide)  - image loading and caching library
-
-## Helper Sample Link
-- Admob Sample https://github.com/amirisback/admob-helper-implementation
-- MVVM Sample https://github.com/amirisback/android-architecture-by-amirisback
-- frogo-recycler-view https://github.com/amirisback/frogo-recycler-view
-- Awesome API Implemented https://github.com/amirisback/awesome-frogo-consumable-apps
-
-## How To Use This Project
-- Just Clone on Your Android Studio
-- Learn this code project for inject to your project
-- String test ads can found on build.gradle in folder app
-- Change in release build variant on build.gradle with your admob id
-
-## Minus From This Project
-- Comment code are too simple
-- Only one thought is the creator of the project
-- Creator of this project indeed need your help
 
 ## Colaborator
 Very open to anyone, I'll write your name under this, please contribute by sending an email to me
