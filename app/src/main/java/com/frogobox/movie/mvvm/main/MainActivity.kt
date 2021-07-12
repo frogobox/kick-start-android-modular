@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import com.frogobox.base.util.Constant.Constant.SEARCH_MOVIE
 import com.frogobox.base.util.Constant.Constant.SEARCH_TV_SHOW
 import com.frogobox.movie.R
+import com.frogobox.movie.databinding.ActivityMainBinding
 import com.frogobox.movie.mvvm.movie.SearchMovieActivity
 import com.frogobox.movie.mvvm.tv.SearchTvShowActivity
 import com.frogobox.movie.mvvm.favorite.FavoriteFragment
@@ -17,16 +18,28 @@ import com.frogobox.movie.mvvm.favorite.FavoriteMovieViewModel
 import com.frogobox.movie.mvvm.favorite.FavoriteTvShowViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseAppActivity() {
+class MainActivity : BaseAppActivity<ActivityMainBinding>() {
 
     private lateinit var mViewModel: MainActivityViewModel
 
     private var menuItem: Menu? = null
     private var optionSearch = ""
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    override fun setupViewBinding(): ActivityMainBinding {
+        return ActivityMainBinding.inflate(layoutInflater)
+    }
+
+    override fun setupViewModel() {
+        mViewModel = obtainMainActivityViewModel().apply {
+            eventStateDailyReminder.observe(this@MainActivity, Observer {
+            })
+
+            eventStateReleaseReminder.observe(this@MainActivity, Observer {
+            })
+        }
+    }
+
+    override fun setupUI(savedInstanceState: Bundle?) {
         setupBottomNav(R.id.frameLayout)
         setupViewModel()
         setupOptionReminder()
@@ -56,16 +69,6 @@ class MainActivity : BaseAppActivity() {
             baseStartActivity<SearchMovieActivity>(this)
         } else if (option.equals(SEARCH_TV_SHOW)) {
             baseStartActivity<SearchTvShowActivity>(this)
-        }
-    }
-
-    private fun setupViewModel() {
-        mViewModel = obtainMainActivityViewModel().apply {
-            eventStateDailyReminder.observe(this@MainActivity, Observer {
-            })
-
-            eventStateReleaseReminder.observe(this@MainActivity, Observer {
-            })
         }
     }
 

@@ -13,41 +13,26 @@ import com.frogobox.base.BaseFragment
 import com.frogobox.base.BaseListener
 import com.frogobox.favorite.mvvm.main.MainActivity
 import com.frogobox.favorite.R
+import com.frogobox.favorite.databinding.FragmentTvMovieListBinding
 import kotlinx.android.synthetic.main.empty_view.*
 import kotlinx.android.synthetic.main.fragment_tv_movie_list.*
 
 /**
  * A simple [Fragment] subclass.
  */
-class MovieFragment : BaseFragment(),
+class MovieFragment : BaseFragment<FragmentTvMovieListBinding>(),
     BaseListener<FavoriteMovie> {
 
     private lateinit var mViewModel: MovieViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        setupViewModel()
-        return inflater.inflate(R.layout.fragment_tv_movie_list, container, false)
+    override fun setupViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup
+    ): FragmentTvMovieListBinding {
+        return FragmentTvMovieListBinding.inflate(inflater, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        getMovie()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        getMovie()
-    }
-
-    private fun getMovie() {
-        mViewModel.getFavoriteMovie()
-    }
-
-    private fun setupViewModel() {
+    override fun setupViewModel() {
         mViewModel = (activity as MainActivity).obtainMovieViewModel().apply {
 
             favMovieListLive.observe(viewLifecycleOwner, Observer {
@@ -65,6 +50,18 @@ class MovieFragment : BaseFragment(),
         }
     }
 
+    override fun setupUI(savedInstanceState: Bundle?) {
+        getMovie()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getMovie()
+    }
+
+    private fun getMovie() {
+        mViewModel.getFavoriteMovie()
+    }
 
     private fun setupRecyclerView(data: List<FavoriteMovie>) {
         val adapter = _root_ide_package_.com.frogobox.base.adapter.FavoriteMovieAdapter()
@@ -86,8 +83,6 @@ class MovieFragment : BaseFragment(),
         }
     }
 
-    override fun onItemLongClicked(data: FavoriteMovie) {
-
-    }
+    override fun onItemLongClicked(data: FavoriteMovie) {}
 
 }

@@ -3,7 +3,6 @@ package com.frogobox.movie.mvvm.favorite
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -13,6 +12,7 @@ import com.frogobox.base.adapter.FavoriteTvShowAdapter
 import com.frogobox.base.BaseFragment
 import com.frogobox.base.BaseListener
 import com.frogobox.movie.R
+import com.frogobox.movie.databinding.FragmentTvMovieListBinding
 import com.frogobox.movie.mvvm.tv.DetailTvShowActivity
 import com.frogobox.movie.mvvm.main.MainActivity
 import kotlinx.android.synthetic.main.empty_view.*
@@ -21,30 +21,19 @@ import kotlinx.android.synthetic.main.fragment_tv_movie_grid.*
 /**
  * A simple [Fragment] subclass.
  */
-class FavoriteTvShowFragment : BaseFragment(),
+class FavoriteTvShowFragment : BaseFragment<FragmentTvMovieListBinding>(),
     BaseListener<FavoriteTvShow> {
 
     private lateinit var mViewModel: FavoriteTvShowViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        setupViewModel()
-        return inflater.inflate(R.layout.fragment_tv_movie_list, container, false)
+    override fun setupViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup
+    ): FragmentTvMovieListBinding {
+        return FragmentTvMovieListBinding.inflate(inflater, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        getTvShow()
-    }
-
-    private fun getTvShow() {
-        mViewModel.getFavoriteTvShow()
-    }
-
-    private fun setupViewModel() {
+    override fun setupViewModel() {
         mViewModel = (activity as MainActivity).obtainFavoriteTvShowViewModel().apply {
 
             favTvShowListLive.observe(viewLifecycleOwner, Observer {
@@ -60,6 +49,14 @@ class FavoriteTvShowFragment : BaseFragment(),
             })
 
         }
+    }
+
+    override fun setupUI(savedInstanceState: Bundle?) {
+        getTvShow()
+    }
+
+    private fun getTvShow() {
+        mViewModel.getFavoriteTvShow()
     }
 
     override fun onResume() {
@@ -87,8 +84,6 @@ class FavoriteTvShowFragment : BaseFragment(),
         }
     }
 
-    override fun onItemLongClicked(data: FavoriteTvShow) {
-
-    }
+    override fun onItemLongClicked(data: FavoriteTvShow) {}
 
 }

@@ -2,6 +2,7 @@ package com.frogobox.favorite.util
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewbinding.ViewBinding
 import com.frogobox.base.BaseActivity
 
 /**
@@ -21,10 +22,11 @@ import com.frogobox.base.BaseActivity
  * com.frogobox.favorite
  *
  */
-open class BaseFavoriteActivity : BaseActivity() {
+abstract class BaseFavoriteActivity<VB : ViewBinding> : BaseActivity<VB>() {
 
     fun <T : ViewModel> obtainViewModel(viewModelClass: Class<T>) =
-        ViewModelProvider(this,
+        ViewModelProvider(
+            this,
             ViewModelFactory.getInstance(application)
         ).get(viewModelClass)
 

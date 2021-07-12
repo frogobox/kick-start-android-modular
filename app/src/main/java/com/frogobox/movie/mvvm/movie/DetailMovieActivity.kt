@@ -13,11 +13,11 @@ import com.frogobox.base.util.Helper
 import com.frogobox.movie.R
 import com.frogobox.movie.util.BaseAppActivity
 import com.bumptech.glide.Glide
+import com.frogobox.movie.databinding.ActivityDetailBinding
 import kotlinx.android.synthetic.main.activity_detail.*
 
-class DetailMovieActivity : BaseAppActivity(),
-    com.frogobox.base.callback.SaveViewCallback,
-    com.frogobox.base.callback.DeleteViewCallback {
+class DetailMovieActivity : BaseAppActivity<ActivityDetailBinding>(),
+    SaveViewCallback, DeleteViewCallback {
 
     companion object {
         const val EXTRA_MOVIE = "EXTRA_MOVIE"
@@ -31,18 +31,11 @@ class DetailMovieActivity : BaseAppActivity(),
     private var isFav = true
     private var menuItem: Menu? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
-        setupDetailActivity(getString(R.string.title_detail_movie))
-        setupViewModel()
-        setupExtraData()
+    override fun setupViewBinding(): ActivityDetailBinding {
+        return ActivityDetailBinding.inflate(layoutInflater)
     }
 
-    private fun obtainDetailMovieViewModel(): DetailMovieViewModel =
-        obtainViewModel(DetailMovieViewModel::class.java)
-
-    private fun setupViewModel() {
+    override fun setupViewModel() {
         mViewModel = obtainDetailMovieViewModel().apply {
 
             favoriteMovie.observe(this@DetailMovieActivity, Observer {
@@ -56,6 +49,14 @@ class DetailMovieActivity : BaseAppActivity(),
 
         }
     }
+
+    override fun setupUI(savedInstanceState: Bundle?) {
+        setupDetailActivity(getString(R.string.title_detail_movie))
+        setupExtraData()
+    }
+
+    private fun obtainDetailMovieViewModel(): DetailMovieViewModel =
+        obtainViewModel(DetailMovieViewModel::class.java)
 
     private fun stateExtra(listenerMovie: () -> Unit, listenerFavMovie: () -> Unit) {
         if (checkExtra(EXTRA_MOVIE)) {

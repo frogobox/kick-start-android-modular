@@ -7,26 +7,19 @@ import androidx.lifecycle.Observer
 import com.frogobox.base.service.AlarmReceiver
 import com.frogobox.base.util.Constant
 import com.frogobox.movie.R
+import com.frogobox.movie.databinding.ActivitySettingBinding
 import com.frogobox.movie.util.BaseAppActivity
 import kotlinx.android.synthetic.main.activity_setting.*
 
-class SettingActivity : BaseAppActivity() {
+class SettingActivity : BaseAppActivity<ActivitySettingBinding>() {
 
     private lateinit var mViewModel: SettingViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_setting)
-        setupDetailActivity(getString(R.string.title_setting))
-        setupViewModel()
-        setupFunViewModel()
-        setupViewElement()
+    override fun setupViewBinding(): ActivitySettingBinding {
+        return ActivitySettingBinding.inflate(layoutInflater)
     }
 
-    private fun obtainSettingViewModel(): SettingViewModel =
-        obtainViewModel(SettingViewModel::class.java)
-
-    private fun setupViewModel() {
+    override fun setupViewModel() {
         mViewModel = obtainSettingViewModel().apply {
 
             eventStateReleaseReminder.observe(this@SettingActivity, Observer {
@@ -40,7 +33,16 @@ class SettingActivity : BaseAppActivity() {
         }
     }
 
-    private fun setupFunViewModel() {
+    override fun setupUI(savedInstanceState: Bundle?) {
+        setupDetailActivity(getString(R.string.title_setting))
+        getPref()
+        setupViewElement()
+    }
+
+    private fun obtainSettingViewModel(): SettingViewModel =
+        obtainViewModel(SettingViewModel::class.java)
+
+    private fun getPref() {
         mViewModel.getPref()
     }
 
@@ -51,7 +53,6 @@ class SettingActivity : BaseAppActivity() {
         }
 
         setupSwitchListener()
-
     }
 
     private fun setupSwitchListener() {
@@ -111,6 +112,5 @@ class SettingActivity : BaseAppActivity() {
         mViewModel.deletePrefReleaseReminder()
         AlarmReceiver().cancelAlarm(this, Constant.Notif.ID_REPEATING_RELEASE)
     }
-
 
 }

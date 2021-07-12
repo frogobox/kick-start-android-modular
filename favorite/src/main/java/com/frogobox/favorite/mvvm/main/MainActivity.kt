@@ -3,6 +3,7 @@ package com.frogobox.favorite.mvvm.main
 import android.os.Bundle
 import com.frogobox.base.util.PagerHelper
 import com.frogobox.favorite.R
+import com.frogobox.favorite.databinding.ActivityMainBinding
 import com.frogobox.favorite.mvvm.movie.MovieFragment
 import com.frogobox.favorite.mvvm.tv.TvShowFragment
 import com.frogobox.favorite.util.BaseFavoriteActivity
@@ -10,11 +11,15 @@ import com.frogobox.favorite.mvvm.movie.MovieViewModel
 import com.frogobox.favorite.mvvm.tv.TvShowViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseFavoriteActivity() {
+class MainActivity : BaseFavoriteActivity<ActivityMainBinding>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    override fun setupViewBinding(): ActivityMainBinding {
+        return ActivityMainBinding.inflate(layoutInflater)
+    }
+
+    override fun setupViewModel() {}
+
+    override fun setupUI(savedInstanceState: Bundle?) {
         mActivity.title = getString(R.string.title_favorite)
         setupViewPager()
     }
@@ -38,6 +43,5 @@ class MainActivity : BaseFavoriteActivity() {
         viewpager.adapter = pagerAdapter
         tablayout.setupWithViewPager(viewpager)
     }
-
 
 }

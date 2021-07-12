@@ -2,34 +2,16 @@ package com.frogobox.movie.mvvm.favorite
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import com.frogobox.base.BaseFragment
 import com.frogobox.base.util.PagerHelper
 
 import com.frogobox.movie.R
+import com.frogobox.movie.databinding.FragmentFavoriteBinding
 import kotlinx.android.synthetic.main.fragment_favorite.*
 
-/**
- * A simple [Fragment] subclass.
- */
-class FavoriteFragment : BaseFragment() {
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorite, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mActivity.setTitle(getString(R.string.title_favorite))
-        setupViewPager()
-    }
+class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
 
     private fun setupViewPager(){
         val pagerAdapter = PagerHelper(childFragmentManager)
@@ -37,6 +19,21 @@ class FavoriteFragment : BaseFragment() {
         pagerAdapter.setupPagerFragment(FavoriteTvShowFragment(), resources.getString(R.string.title_favorite_tv_show))
         viewpager.adapter = pagerAdapter
         tablayout.setupWithViewPager(viewpager)
+    }
+
+    override fun setupViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup
+    ): FragmentFavoriteBinding {
+        return FragmentFavoriteBinding.inflate(inflater, container, false)
+    }
+
+    override fun setupViewModel() {
+    }
+
+    override fun setupUI(savedInstanceState: Bundle?) {
+        mActivity.title = getString(R.string.title_favorite)
+        setupViewPager()
     }
 
 }

@@ -2,6 +2,7 @@ package com.frogobox.movie.util
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewbinding.ViewBinding
 import com.frogobox.base.BaseActivity
 
 /**
@@ -21,7 +22,7 @@ import com.frogobox.base.BaseActivity
  * com.frogobox.movie.util
  *
  */
-open class BaseAppActivity : BaseActivity() {
+abstract class BaseAppActivity<VB : ViewBinding> : BaseActivity<VB>() {
 
     fun <T : ViewModel> obtainViewModel(viewModelClass: Class<T>) =
         ViewModelProvider(this, ViewModelFactory.getInstance(application)).get(viewModelClass)

@@ -11,13 +11,12 @@ import com.frogobox.base.source.model.FavoriteTvShow
 import com.frogobox.base.source.model.TvShow
 import com.frogobox.base.util.Helper
 import com.frogobox.favorite.R
+import com.frogobox.favorite.databinding.ActivityDetailBinding
 import com.frogobox.favorite.util.BaseFavoriteActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail.*
 
-class DetailTvShowActivity : BaseFavoriteActivity(),
-    com.frogobox.base.callback.SaveViewCallback,
-    com.frogobox.base.callback.DeleteViewCallback {
+class DetailTvShowActivity : BaseFavoriteActivity<ActivityDetailBinding>(), SaveViewCallback, DeleteViewCallback {
 
     companion object {
         const val EXTRA_FAV_TV = "EXTRA_FAV_TV"
@@ -30,31 +29,32 @@ class DetailTvShowActivity : BaseFavoriteActivity(),
     private var isFav = false
     private var menuItem: Menu? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
-        setupDetailActivity(getString(R.string.title_detail_tv_show))
-        setupViewModel()
-        setupExtraData()
+    override fun setupViewBinding(): ActivityDetailBinding {
+        return ActivityDetailBinding.inflate(layoutInflater)
     }
 
-    private fun obtainDetailTvShowViewModel(): DetailTvShowViewModel =
-        obtainViewModel(DetailTvShowViewModel::class.java)
-
-    private fun setupViewModel() {
+    override fun setupViewModel() {
         mViewModel = obtainDetailTvShowViewModel().apply {
 
-            favoriteTvShow.observe(this@DetailTvShowActivity, Observer {
+            favoriteTvShow.observe(this@DetailTvShowActivity, {
 
             })
 
-            eventIsFavorite.observe(this@DetailTvShowActivity, Observer {
+            eventIsFavorite.observe(this@DetailTvShowActivity, {
                 setFavorite(it)
                 isFav = it
             })
 
         }
     }
+
+    override fun setupUI(savedInstanceState: Bundle?) {
+        setupDetailActivity(getString(R.string.title_detail_tv_show))
+        setupExtraData()
+    }
+
+    private fun obtainDetailTvShowViewModel(): DetailTvShowViewModel =
+        obtainViewModel(DetailTvShowViewModel::class.java)
 
     private fun setupExtraData() {
         extraFavoriteTvShow = baseGetExtraData(EXTRA_FAV_TV)

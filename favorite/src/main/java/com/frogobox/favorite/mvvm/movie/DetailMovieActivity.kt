@@ -11,13 +11,12 @@ import com.frogobox.base.source.model.FavoriteMovie
 import com.frogobox.base.source.model.Movie
 import com.frogobox.base.util.Helper
 import com.frogobox.favorite.R
+import com.frogobox.favorite.databinding.ActivityDetailBinding
 import com.frogobox.favorite.util.BaseFavoriteActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail.*
 
-class DetailMovieActivity : BaseFavoriteActivity(),
-    com.frogobox.base.callback.SaveViewCallback,
-    com.frogobox.base.callback.DeleteViewCallback {
+class DetailMovieActivity : BaseFavoriteActivity<ActivityDetailBinding>(), SaveViewCallback, DeleteViewCallback {
 
     companion object {
         const val EXTRA_FAV_MOVIE = "EXTRA_FAV_MOVIE"
@@ -30,18 +29,11 @@ class DetailMovieActivity : BaseFavoriteActivity(),
     private var isFav = true
     private var menuItem: Menu? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
-        setupDetailActivity(getString(R.string.title_detail_movie))
-        setupViewModel()
-        setupExtraData()
+    override fun setupViewBinding(): ActivityDetailBinding {
+        return ActivityDetailBinding.inflate(layoutInflater)
     }
 
-    fun obtainDetailMovieViewModel(): DetailMovieViewModel =
-        obtainViewModel(DetailMovieViewModel::class.java)
-
-    private fun setupViewModel() {
+    override fun setupViewModel() {
         mViewModel = obtainDetailMovieViewModel().apply {
 
             favoriteMovie.observe(this@DetailMovieActivity, Observer {
@@ -55,6 +47,15 @@ class DetailMovieActivity : BaseFavoriteActivity(),
 
         }
     }
+
+    override fun setupUI(savedInstanceState: Bundle?) {
+        setupDetailActivity(getString(R.string.title_detail_movie))
+        setupExtraData()
+    }
+
+    fun obtainDetailMovieViewModel(): DetailMovieViewModel =
+        obtainViewModel(DetailMovieViewModel::class.java)
+
 
     private fun setupExtraData() {
         extraFavoriteMovie = baseGetExtraData(EXTRA_FAV_MOVIE)

@@ -13,11 +13,10 @@ import com.frogobox.base.util.Helper
 import com.frogobox.movie.R
 import com.frogobox.movie.util.BaseAppActivity
 import com.bumptech.glide.Glide
+import com.frogobox.movie.databinding.ActivityDetailBinding
 import kotlinx.android.synthetic.main.activity_detail.*
 
-class DetailTvShowActivity : BaseAppActivity(),
-    com.frogobox.base.callback.SaveViewCallback,
-    com.frogobox.base.callback.DeleteViewCallback {
+class DetailTvShowActivity : BaseAppActivity<ActivityDetailBinding>(), SaveViewCallback, DeleteViewCallback {
 
     companion object {
         const val EXTRA_TV = "EXTRA_TV"
@@ -31,18 +30,11 @@ class DetailTvShowActivity : BaseAppActivity(),
     private var isFav = false
     private var menuItem: Menu? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
-        setupDetailActivity(getString(R.string.title_detail_tv_show))
-        setupViewModel()
-        setupExtraData()
+    override fun setupViewBinding(): ActivityDetailBinding {
+        return ActivityDetailBinding.inflate(layoutInflater)
     }
 
-    private fun obtainDetailTvShowViewModel(): DetailTvShowViewModel =
-        obtainViewModel(DetailTvShowViewModel::class.java)
-
-    private fun setupViewModel() {
+    override fun setupViewModel() {
         mViewModel = obtainDetailTvShowViewModel().apply {
 
             favoriteTvShow.observe(this@DetailTvShowActivity, Observer {
@@ -56,6 +48,14 @@ class DetailTvShowActivity : BaseAppActivity(),
 
         }
     }
+
+    override fun setupUI(savedInstanceState: Bundle?) {
+        setupDetailActivity(getString(R.string.title_detail_tv_show))
+        setupExtraData()
+    }
+
+    private fun obtainDetailTvShowViewModel(): DetailTvShowViewModel =
+        obtainViewModel(DetailTvShowViewModel::class.java)
 
     private fun stateExtra(listenerTvShow: () -> Unit, listenerFavTvShow: () -> Unit) {
         if (checkExtra(EXTRA_TV)) {
@@ -161,4 +161,3 @@ class DetailTvShowActivity : BaseAppActivity(),
     override fun onFailed(message: String) {}
 
 }
-

@@ -3,7 +3,6 @@ package com.frogobox.movie.mvvm.tv
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -14,6 +13,7 @@ import com.frogobox.base.adapter.TvShowAdapter
 import com.frogobox.base.BaseFragment
 import com.frogobox.base.BaseListener
 import com.frogobox.movie.R
+import com.frogobox.movie.databinding.FragmentTvMovieGridBinding
 import com.frogobox.movie.mvvm.main.MainActivity
 import com.frogobox.movie.mvvm.main.MainViewModel
 import kotlinx.android.synthetic.main.fragment_tv_movie_list.*
@@ -21,31 +21,19 @@ import kotlinx.android.synthetic.main.fragment_tv_movie_list.*
 /**
  * A simple [Fragment] subclass.
  */
-class TvShowFragment : BaseFragment(),
+class TvShowFragment : BaseFragment<FragmentTvMovieGridBinding>(),
     BaseListener<TvShow> {
 
     private lateinit var mViewModel: MainViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        setupViewModel()
-        return inflater.inflate(R.layout.fragment_tv_movie_grid, container, false)
+    override fun setupViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup
+    ): FragmentTvMovieGridBinding {
+        return FragmentTvMovieGridBinding.inflate(inflater, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        getTvShow()
-    }
-
-    private fun getTvShow() {
-        mActivity.setTitle(getString(R.string.title_tv))
-        mViewModel.getTvShow()
-    }
-
-    private fun setupViewModel() {
+    override fun setupViewModel() {
         mViewModel = (activity as MainActivity).obtainMainViewModel().apply {
 
             tvShowListLive.observe(viewLifecycleOwner, Observer {
@@ -57,6 +45,15 @@ class TvShowFragment : BaseFragment(),
             })
 
         }
+    }
+
+    override fun setupUI(savedInstanceState: Bundle?) {
+        getTvShow()
+    }
+
+    private fun getTvShow() {
+        mActivity.title = getString(R.string.title_tv)
+        mViewModel.getTvShow()
     }
 
     private fun setupRecyclerView(data: List<TvShow>) {
@@ -71,7 +68,6 @@ class TvShowFragment : BaseFragment(),
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
 
-
     override fun onItemClicked(data: TvShow) {
         context?.let {
             baseStartActivity<DetailTvShowActivity, TvShow>(
@@ -82,9 +78,6 @@ class TvShowFragment : BaseFragment(),
         }
     }
 
-    override fun onItemLongClicked(data: TvShow) {
-
-    }
-
+    override fun onItemLongClicked(data: TvShow) {}
 
 }

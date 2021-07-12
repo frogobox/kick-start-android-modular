@@ -10,6 +10,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
 
 /**
  * Created by Faisal Amir
@@ -28,14 +29,25 @@ import androidx.fragment.app.Fragment
  * com.frogobox.base.ui
  *
  */
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
-    lateinit var mActivity: AppCompatActivity
+    protected lateinit var mActivity: AppCompatActivity
+
+    protected lateinit var binding: VB
+
+    abstract fun setupViewBinding(): VB
+
+    abstract fun setupViewModel()
+
+    abstract fun setupUI(savedInstanceState: Bundle?)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mActivity = this
-
+        binding = setupViewBinding()
+        setContentView(binding.root)
+        setupViewModel()
+        setupUI(savedInstanceState)
     }
 
     protected fun setupNoLimitStatBar() {

@@ -9,27 +9,22 @@ import com.frogobox.base.source.model.Movie
 import com.frogobox.base.adapter.MovieAdapter
 import com.frogobox.base.BaseListener
 import com.frogobox.movie.R
+import com.frogobox.movie.databinding.ActivitySearchBinding
 import com.frogobox.movie.util.BaseAppActivity
 import kotlinx.android.synthetic.main.fragment_tv_movie_list.*
 import kotlinx.android.synthetic.main.toolbar_search.*
 
-class SearchMovieActivity : BaseAppActivity(),
+class SearchMovieActivity : BaseAppActivity<ActivitySearchBinding>(),
     BaseListener<Movie> {
 
     private lateinit var mViewModel: SearchMovieViewModel
     private lateinit var adapter: MovieAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search)
-        setupViewModel()
-        setupViewElement()
+    override fun setupViewBinding(): ActivitySearchBinding {
+        return ActivitySearchBinding.inflate(layoutInflater)
     }
 
-    private fun obtainSearchMovieViewModel(): SearchMovieViewModel =
-        obtainViewModel(SearchMovieViewModel::class.java)
-
-    private fun setupViewModel() {
+    override fun setupViewModel() {
         adapter = MovieAdapter()
 
         mViewModel = obtainSearchMovieViewModel().apply {
@@ -44,6 +39,13 @@ class SearchMovieActivity : BaseAppActivity(),
 
         }
     }
+
+    override fun setupUI(savedInstanceState: Bundle?) {
+        setupViewElement()
+    }
+
+    private fun obtainSearchMovieViewModel(): SearchMovieViewModel =
+        obtainViewModel(SearchMovieViewModel::class.java)
 
     private fun searchMovie(query: String) {
         mViewModel.searchMovies(query)

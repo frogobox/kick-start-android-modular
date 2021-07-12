@@ -9,27 +9,22 @@ import com.frogobox.base.source.model.TvShow
 import com.frogobox.base.adapter.TvShowAdapter
 import com.frogobox.base.BaseListener
 import com.frogobox.movie.R
+import com.frogobox.movie.databinding.ActivitySearchBinding
 import com.frogobox.movie.util.BaseAppActivity
 import kotlinx.android.synthetic.main.fragment_tv_movie_list.*
 import kotlinx.android.synthetic.main.toolbar_search.*
 
-class SearchTvShowActivity : BaseAppActivity(),
+class SearchTvShowActivity : BaseAppActivity<ActivitySearchBinding>(),
     BaseListener<TvShow> {
 
     private lateinit var mViewModel: SearchTvShowViewModel
     private lateinit var adapter: TvShowAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search)
-        setupViewModel()
-        setupViewElement()
+    override fun setupViewBinding(): ActivitySearchBinding {
+        return ActivitySearchBinding.inflate(layoutInflater)
     }
 
-    fun obtainSearchTvShowViewModel(): SearchTvShowViewModel =
-        obtainViewModel(SearchTvShowViewModel::class.java)
-
-    private fun setupViewModel() {
+    override fun setupViewModel() {
         adapter = TvShowAdapter()
 
         mViewModel = obtainSearchTvShowViewModel().apply {
@@ -44,6 +39,14 @@ class SearchTvShowActivity : BaseAppActivity(),
 
         }
     }
+
+
+    override fun setupUI(savedInstanceState: Bundle?) {
+        setupViewElement()
+    }
+
+    fun obtainSearchTvShowViewModel(): SearchTvShowViewModel =
+        obtainViewModel(SearchTvShowViewModel::class.java)
 
     private fun searchTvShow(query: String) {
         mViewModel.searchTvShow(query)
