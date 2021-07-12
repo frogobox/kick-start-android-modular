@@ -4,18 +4,18 @@ import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.frogobox.base.modular.source.Repository
+import com.frogobox.base.source.Repository
 import com.frogobox.base.util.Injection
-import com.frogobox.favorite.viewmodel.DetailMovieViewModel
-import com.frogobox.favorite.viewmodel.DetailTvShowViewModel
-import com.frogobox.favorite.viewmodel.MovieViewModel
-import com.frogobox.favorite.viewmodel.TvShowViewModel
+import com.frogobox.favorite.mvvm.movie.DetailMovieViewModel
+import com.frogobox.favorite.mvvm.tv.DetailTvShowViewModel
+import com.frogobox.favorite.mvvm.movie.MovieViewModel
+import com.frogobox.favorite.mvvm.tv.TvShowViewModel
 
 /**
  * Created by Faisal Amir
  * FrogoBox Inc License
  * =========================================
- * mvvm
+ * movie
  * Copyright (C) 16/11/2019.
  * All rights reserved
  * -----------------------------------------

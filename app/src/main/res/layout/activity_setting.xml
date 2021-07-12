@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/dimen_big_16dp"
     android:background="@color/colorBaseWhite"
-    tools:context=".ui.activity.SettingActivity">
+    tools:context=".mvvm.main.SettingActivity">
 
     <ImageView
         android:id="@+id/iv_setting_lang"

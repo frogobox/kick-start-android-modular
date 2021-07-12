@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.frogobox.favorite">
 
-    <uses-permission android:name="com.frogobox.mvvm.provider.FavoriteMovieProvider.READ_DATABASE_MOVIE" />
-    <uses-permission android:name="com.frogobox.mvvm.provider.FavoriteMovieProvider.WRITE_DATABASE_MOVIE" />
-    <uses-permission android:name="com.frogobox.mvvm.provider.FavoriteTvShowProvider.READ_DATABASE_TV_SHOW" />
-    <uses-permission android:name="com.frogobox.mvvm.provider.FavoriteTvShowProvider.WRITE_DATABASE_TV_SHOW" />
+    <uses-permission android:name="com.frogobox.movie.provider.FavoriteMovieProvider.READ_DATABASE_MOVIE" />
+    <uses-permission android:name="com.frogobox.movie.provider.FavoriteMovieProvider.WRITE_DATABASE_MOVIE" />
+    <uses-permission android:name="com.frogobox.movie.provider.FavoriteTvShowProvider.READ_DATABASE_TV_SHOW" />
+    <uses-permission android:name="com.frogobox.movie.provider.FavoriteTvShowProvider.WRITE_DATABASE_TV_SHOW" />
 
     <application
         android:name="com.frogobox.base.BaseApplication"
@@ -15,9 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.DetailTvShowActivity" />
-        <activity android:name=".ui.activity.DetailMovieActivity" />
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name=".mvvm.tv.DetailTvShowActivity" />
+        <activity android:name=".mvvm.movie.DetailMovieActivity" />
+        <activity android:name=".mvvm.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

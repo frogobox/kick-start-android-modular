@@ -9,7 +9,7 @@ Trying best of my mind clustering code architecture
 - Inheritance RecyclerViewAdapter (BaseViewAdapter, BasViewHolder, BaseListener)
 - Inheritance AdmobActivity (BaseAdmobActivity)
 - Certainly Clean Code
-- Link Apps On Play Store [Click Here](https://play.google.com/store/apps/details?id=com.frogobox.mvvm)
+- Link Apps On Play Store [Click Here](https://play.google.com/store/apps/details?id=com.frogobox.movie)
 
 ## Screen Shoot Apps
 

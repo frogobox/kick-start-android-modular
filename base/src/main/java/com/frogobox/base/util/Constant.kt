@@ -1,27 +1,19 @@
 package com.frogobox.base.util
 
-import android.annotation.TargetApi
 import android.content.ContentResolver
-import android.content.Context
-import android.content.SharedPreferences
 import android.content.UriMatcher
 import android.database.Cursor
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.net.Uri
-import android.os.Build
-import android.preference.PreferenceManager
 import android.provider.BaseColumns
-import com.frogobox.base.modular.model.FavoriteMovie
-import com.frogobox.base.modular.model.FavoriteTvShow
-import java.text.SimpleDateFormat
-import java.util.*
+import com.frogobox.base.source.model.FavoriteMovie
+import com.frogobox.base.source.model.FavoriteTvShow
+
 
 /**
  * Created by Faisal Amir
  * FrogoBox Inc License
  * =========================================
- * mvvm
+ * movie
  * Copyright (C) 16/11/2019.
  * All rights reserved
  * -----------------------------------------
@@ -39,7 +31,7 @@ class Constant {
     object RoomDatabase {
         const val DATABASE_NAME = "movie.db"
 
-        const val CONTENT_AUTHORITY = "com.frogobox.mvvm" // Nama Domain Aplikasi
+        const val CONTENT_AUTHORITY = "com.frogobox.movie" // Nama Domain Aplikasi
         const val SCHEME = "content"
 
         object Movie {
@@ -163,8 +155,8 @@ class Constant {
     }
 
     object Constant {
-        const val PACKAGE_ROOT = "com.frogobox.mvvm"
-        const val PATH_MAIN_ACTIVITY = "com.frogobox.mvvm.view.ui.activity.MainActivity"
+        const val PACKAGE_ROOT = "com.frogobox.movie"
+        const val PATH_MAIN_ACTIVITY = "com.frogobox.movie.view.ui.activity.MainActivity"
 
         // Format Date
         const val DATE_TIME_GLOBAL = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" //
