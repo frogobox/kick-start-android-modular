@@ -3,7 +3,6 @@ package com.frogobox.movie.mvvm.movie
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -16,7 +15,6 @@ import com.frogobox.movie.R
 import com.frogobox.movie.databinding.FragmentTvMovieGridBinding
 import com.frogobox.movie.mvvm.main.MainActivity
 import com.frogobox.movie.mvvm.main.MainViewModel
-import kotlinx.android.synthetic.main.fragment_tv_movie_grid.*
 
 /**
  * A simple [Fragment] subclass.
@@ -41,7 +39,7 @@ class MovieFragment : BaseFragment<FragmentTvMovieGridBinding>(),
             })
 
             eventShowProgress.observe(viewLifecycleOwner, Observer {
-                setupEventProgressView(progressBar, it)
+                setupEventProgressView(binding?.progressBar!!, it)
             })
 
         }
@@ -61,12 +59,12 @@ class MovieFragment : BaseFragment<FragmentTvMovieGridBinding>(),
         context?.let { adapter.setRecyclerViewLayout(it, R.layout.item_grid_tv_movie) }
         adapter.setRecyclerViewListener(this)
         adapter.setRecyclerViewData(data)
-        recyclerView.adapter = adapter
-//        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        recyclerView.layoutManager =
-            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        binding?.apply {
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager =
+                StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        }
     }
-
 
     override fun onItemClicked(data: Movie) {
         context?.let {
@@ -78,7 +76,6 @@ class MovieFragment : BaseFragment<FragmentTvMovieGridBinding>(),
         }
     }
 
-    override fun onItemLongClicked(data: Movie) {
+    override fun onItemLongClicked(data: Movie) {}
 
-    }
 }

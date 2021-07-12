@@ -16,7 +16,6 @@ import com.frogobox.movie.R
 import com.frogobox.movie.databinding.FragmentTvMovieGridBinding
 import com.frogobox.movie.mvvm.main.MainActivity
 import com.frogobox.movie.mvvm.main.MainViewModel
-import kotlinx.android.synthetic.main.fragment_tv_movie_list.*
 
 /**
  * A simple [Fragment] subclass.
@@ -41,7 +40,7 @@ class TvShowFragment : BaseFragment<FragmentTvMovieGridBinding>(),
             })
 
             eventShowProgress.observe(viewLifecycleOwner, Observer {
-                setupEventProgressView(progressBar, it)
+                setupEventProgressView(binding?.progressBar!!, it)
             })
 
         }
@@ -61,11 +60,13 @@ class TvShowFragment : BaseFragment<FragmentTvMovieGridBinding>(),
         context?.let { adapter.setRecyclerViewLayout(it, R.layout.item_grid_tv_movie) }
         adapter.setRecyclerViewListener(this)
         adapter.setRecyclerViewData(data)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        recyclerView.layoutManager =
-            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        binding?.apply {
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            recyclerView.layoutManager =
+                StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        }
     }
 
     override fun onItemClicked(data: TvShow) {

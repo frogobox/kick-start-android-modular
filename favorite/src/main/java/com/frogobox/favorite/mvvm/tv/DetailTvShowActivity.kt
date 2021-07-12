@@ -3,18 +3,16 @@ package com.frogobox.favorite.mvvm.tv
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.lifecycle.Observer
 import com.frogobox.base.BuildConfig
 import com.frogobox.base.callback.DeleteViewCallback
 import com.frogobox.base.callback.SaveViewCallback
+import com.frogobox.base.databinding.ActivityDetailBinding
 import com.frogobox.base.source.model.FavoriteTvShow
 import com.frogobox.base.source.model.TvShow
 import com.frogobox.base.util.Helper
 import com.frogobox.favorite.R
-import com.frogobox.favorite.databinding.ActivityDetailBinding
 import com.frogobox.favorite.util.BaseFavoriteActivity
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailTvShowActivity : BaseFavoriteActivity<ActivityDetailBinding>(), SaveViewCallback, DeleteViewCallback {
 
@@ -57,12 +55,14 @@ class DetailTvShowActivity : BaseFavoriteActivity<ActivityDetailBinding>(), Save
         obtainViewModel(DetailTvShowViewModel::class.java)
 
     private fun setupExtraData() {
-        extraFavoriteTvShow = baseGetExtraData(EXTRA_FAV_TV)
-        val poster = extraFavoriteTvShow.backdrop_path?.let { Helper.Func.removeBackSlash(it) }
-        Picasso.get().load(BuildConfig.TMDB_PATH_URL_IMAGE + poster).into(iv_poster)
-        tv_title.text = extraFavoriteTvShow.name
-        tv_overview.text = extraFavoriteTvShow.overview
-        extraFavoriteTvShow.id?.let { mViewModel.getFavoriteTvShow(it) }
+        binding.apply {
+            extraFavoriteTvShow = baseGetExtraData(EXTRA_FAV_TV)
+            val poster = extraFavoriteTvShow.backdrop_path?.let { Helper.Func.removeBackSlash(it) }
+            Picasso.get().load(BuildConfig.TMDB_PATH_URL_IMAGE + poster).into(ivPoster)
+            tvTitle.text = extraFavoriteTvShow.name
+            tvOverview.text = extraFavoriteTvShow.overview
+            extraFavoriteTvShow.id?.let { mViewModel.getFavoriteTvShow(it) }
+        }
     }
 
     private fun setFavorite(state: Boolean) {

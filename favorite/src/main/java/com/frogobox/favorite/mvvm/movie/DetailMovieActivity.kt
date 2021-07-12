@@ -7,14 +7,13 @@ import androidx.lifecycle.Observer
 import com.frogobox.base.BuildConfig
 import com.frogobox.base.callback.DeleteViewCallback
 import com.frogobox.base.callback.SaveViewCallback
+import com.frogobox.base.databinding.ActivityDetailBinding
 import com.frogobox.base.source.model.FavoriteMovie
 import com.frogobox.base.source.model.Movie
 import com.frogobox.base.util.Helper
 import com.frogobox.favorite.R
-import com.frogobox.favorite.databinding.ActivityDetailBinding
 import com.frogobox.favorite.util.BaseFavoriteActivity
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailMovieActivity : BaseFavoriteActivity<ActivityDetailBinding>(), SaveViewCallback, DeleteViewCallback {
 
@@ -58,12 +57,14 @@ class DetailMovieActivity : BaseFavoriteActivity<ActivityDetailBinding>(), SaveV
 
 
     private fun setupExtraData() {
-        extraFavoriteMovie = baseGetExtraData(EXTRA_FAV_MOVIE)
-        val poster = extraFavoriteMovie.backdrop_path?.let { Helper.Func.removeBackSlash(it) }
-        Picasso.get().load(BuildConfig.TMDB_PATH_URL_IMAGE + poster).into(iv_poster)
-        tv_title.text = extraFavoriteMovie.title
-        tv_overview.text = extraFavoriteMovie.overview
-        extraFavoriteMovie.id?.let { mViewModel.getFavoriteMovie(it) }
+        binding.apply {
+            extraFavoriteMovie = baseGetExtraData(EXTRA_FAV_MOVIE)
+            val poster = extraFavoriteMovie.backdrop_path?.let { Helper.Func.removeBackSlash(it) }
+            Picasso.get().load(BuildConfig.TMDB_PATH_URL_IMAGE + poster).into(ivPoster)
+            tvTitle.text = extraFavoriteMovie.title
+            tvOverview.text = extraFavoriteMovie.overview
+            extraFavoriteMovie.id?.let { mViewModel.getFavoriteMovie(it) }
+        }
     }
 
     private fun setFavorite(state: Boolean) {

@@ -13,8 +13,7 @@ import com.frogobox.base.util.Helper
 import com.frogobox.movie.R
 import com.frogobox.movie.util.BaseAppActivity
 import com.bumptech.glide.Glide
-import com.frogobox.movie.databinding.ActivityDetailBinding
-import kotlinx.android.synthetic.main.activity_detail.*
+import com.frogobox.base.databinding.ActivityDetailBinding
 
 class DetailTvShowActivity : BaseAppActivity<ActivityDetailBinding>(), SaveViewCallback, DeleteViewCallback {
 
@@ -67,21 +66,25 @@ class DetailTvShowActivity : BaseAppActivity<ActivityDetailBinding>(), SaveViewC
 
 
     private fun setupExtraData() {
-        stateExtra({
-            extraTvShow = baseGetExtraData(EXTRA_TV)
-            val poster = extraTvShow.backdrop_path?.let { Helper.Func.removeBackSlash(it) }
-            Glide.with(this).load("${BuildConfig.TMDB_PATH_URL_IMAGE}$poster").into(iv_poster)
-            tv_title.text = extraTvShow.name
-            tv_overview.text = extraTvShow.overview
-            extraTvShow.id?.let { mViewModel.getFavoriteTvShow(it) }
-        }) {
-            extraFavoriteTvShow = baseGetExtraData(EXTRA_FAV_TV)
-            val poster = extraFavoriteTvShow.backdrop_path?.let { Helper.Func.removeBackSlash(it) }
-            Glide.with(this).load("${BuildConfig.TMDB_PATH_URL_IMAGE}$poster").into(iv_poster)
-            tv_title.text = extraFavoriteTvShow.name
-            tv_overview.text = extraFavoriteTvShow.overview
-            extraFavoriteTvShow.id?.let { mViewModel.getFavoriteTvShow(it) }
+        binding.apply {
+            stateExtra({
+                extraTvShow = baseGetExtraData(EXTRA_TV)
+                val poster = extraTvShow.backdrop_path?.let { Helper.Func.removeBackSlash(it) }
+                Glide.with(this@DetailTvShowActivity).load("${BuildConfig.TMDB_PATH_URL_IMAGE}$poster").into(ivPoster)
+                tvTitle.text = extraTvShow.name
+                tvOverview.text = extraTvShow.overview
+                extraTvShow.id?.let { mViewModel.getFavoriteTvShow(it) }
+            }) {
+                extraFavoriteTvShow = baseGetExtraData(EXTRA_FAV_TV)
+                val poster =
+                    extraFavoriteTvShow.backdrop_path?.let { Helper.Func.removeBackSlash(it) }
+                Glide.with(this@DetailTvShowActivity).load("${BuildConfig.TMDB_PATH_URL_IMAGE}$poster").into(ivPoster)
+                tvTitle.text = extraFavoriteTvShow.name
+                tvOverview.text = extraFavoriteTvShow.overview
+                extraFavoriteTvShow.id?.let { mViewModel.getFavoriteTvShow(it) }
+            }
         }
+
     }
 
     private fun setFavorite(state: Boolean) {

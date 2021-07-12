@@ -11,8 +11,6 @@ import com.frogobox.base.BaseListener
 import com.frogobox.movie.R
 import com.frogobox.movie.databinding.ActivitySearchBinding
 import com.frogobox.movie.util.BaseAppActivity
-import kotlinx.android.synthetic.main.fragment_tv_movie_list.*
-import kotlinx.android.synthetic.main.toolbar_search.*
 
 class SearchMovieActivity : BaseAppActivity<ActivitySearchBinding>(),
     BaseListener<Movie> {
@@ -34,7 +32,7 @@ class SearchMovieActivity : BaseAppActivity<ActivitySearchBinding>(),
             })
 
             eventShowProgress.observe(this@SearchMovieActivity, Observer {
-                setupEventProgressView(progressBar, it)
+                setupEventProgressView(binding.progressBar, it)
             })
 
         }
@@ -53,25 +51,27 @@ class SearchMovieActivity : BaseAppActivity<ActivitySearchBinding>(),
 
     private fun setupViewElement() {
 
-        et_search.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {}
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                val query = et_search.text.toString()
-                if (!query.equals("")) {
-                    searchMovie(query)
-                } else {
-                    adapter.nukeRecyclerViewData()
+        binding.toolbar.apply {
+            etSearch.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(p0: Editable?) {}
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    val query = etSearch.text.toString()
+                    if (!query.equals("")) {
+                        searchMovie(query)
+                    } else {
+                        adapter.nukeRecyclerViewData()
+                    }
                 }
+            })
+
+            ivBack.setOnClickListener {
+                finish()
             }
-        })
 
-        iv_back.setOnClickListener {
-            finish()
-        }
-
-        iv_close.setOnClickListener {
-            et_search.text.clear()
+            ivClose.setOnClickListener {
+                etSearch.text.clear()
+            }
         }
     }
 
@@ -79,8 +79,11 @@ class SearchMovieActivity : BaseAppActivity<ActivitySearchBinding>(),
         adapter.setRecyclerViewLayout(this, R.layout.item_list_tv_movie)
         adapter.setRecyclerViewListener(this)
         adapter.setRecyclerViewData(data)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.apply {
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager =
+                LinearLayoutManager(this@SearchMovieActivity, LinearLayoutManager.VERTICAL, false)
+        }
     }
 
     override fun onItemClicked(data: Movie) {

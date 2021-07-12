@@ -9,7 +9,6 @@ import com.frogobox.base.util.Constant
 import com.frogobox.movie.R
 import com.frogobox.movie.databinding.ActivitySettingBinding
 import com.frogobox.movie.util.BaseAppActivity
-import kotlinx.android.synthetic.main.activity_setting.*
 
 class SettingActivity : BaseAppActivity<ActivitySettingBinding>() {
 
@@ -23,11 +22,11 @@ class SettingActivity : BaseAppActivity<ActivitySettingBinding>() {
         mViewModel = obtainSettingViewModel().apply {
 
             eventStateReleaseReminder.observe(this@SettingActivity, Observer {
-                switch_release_reminder.isChecked = it
+                binding.switchReleaseReminder.isChecked = it
             })
 
             eventStateDailyReminder.observe(this@SettingActivity, Observer {
-                switch_daily_reminder.isChecked = it
+                binding.switchDailyReminder.isChecked = it
             })
 
         }
@@ -47,7 +46,7 @@ class SettingActivity : BaseAppActivity<ActivitySettingBinding>() {
     }
 
     private fun setupViewElement() {
-        iv_setting_lang.setOnClickListener {
+        binding.ivSettingLang.setOnClickListener {
             val mIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
             startActivity(mIntent)
         }
@@ -56,19 +55,21 @@ class SettingActivity : BaseAppActivity<ActivitySettingBinding>() {
     }
 
     private fun setupSwitchListener() {
-        switch_daily_reminder.setOnCheckedChangeListener { compoundButton, checked ->
-            if (checked) {
-                setDailyReminder(checked)
-            } else {
-                stopDailyReminder()
+        binding.apply {
+            switchDailyReminder.setOnCheckedChangeListener { compoundButton, checked ->
+                if (checked) {
+                    setDailyReminder(checked)
+                } else {
+                    stopDailyReminder()
+                }
             }
-        }
 
-        switch_release_reminder.setOnCheckedChangeListener { compoundButton, checked ->
-            if (checked) {
-                setReleaseReminder(checked)
-            } else {
-                stopReleaseReminder()
+            switchReleaseReminder.setOnCheckedChangeListener { compoundButton, checked ->
+                if (checked) {
+                    setReleaseReminder(checked)
+                } else {
+                    stopReleaseReminder()
+                }
             }
         }
     }

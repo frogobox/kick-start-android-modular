@@ -16,7 +16,6 @@ import com.frogobox.movie.mvvm.tv.TvShowFragment
 import com.frogobox.movie.util.BaseAppActivity
 import com.frogobox.movie.mvvm.favorite.FavoriteMovieViewModel
 import com.frogobox.movie.mvvm.favorite.FavoriteTvShowViewModel
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseAppActivity<ActivityMainBinding>() {
 
@@ -40,7 +39,7 @@ class MainActivity : BaseAppActivity<ActivityMainBinding>() {
     }
 
     override fun setupUI(savedInstanceState: Bundle?) {
-        setupBottomNav(R.id.frameLayout)
+        setupBottomNav(binding.frameLayout.id)
         setupViewModel()
         setupOptionReminder()
         setupFragment(savedInstanceState)
@@ -93,46 +92,48 @@ class MainActivity : BaseAppActivity<ActivityMainBinding>() {
 
     private fun setupFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
-            bottomNavigationView.selectedItemId = R.id.bottom_menu_movie
+            binding.bottomNavigationView.selectedItemId = R.id.bottom_menu_movie
         }
     }
 
     private fun setupBottomNav(frameLayout: Int) {
-        bottomNavigationView.clearAnimation()
-        bottomNavigationView.setOnNavigationItemSelectedListener {
+        binding.apply {
+            bottomNavigationView.clearAnimation()
+            bottomNavigationView.setOnNavigationItemSelectedListener {
 
-            when (it.itemId) {
-                R.id.bottom_menu_movie -> {
-                    optionSearch =
-                        SEARCH_MOVIE
-                    menuItem?.getItem(0)?.setVisible(true)
-                    setupChildFragment(
-                        frameLayout,
-                        MovieFragment()
-                    )
+                when (it.itemId) {
+                    R.id.bottom_menu_movie -> {
+                        optionSearch =
+                            SEARCH_MOVIE
+                        menuItem?.getItem(0)?.setVisible(true)
+                        setupChildFragment(
+                            frameLayout,
+                            MovieFragment()
+                        )
+                    }
+
+                    R.id.bottom_menu_tv -> {
+                        optionSearch =
+                            SEARCH_TV_SHOW
+                        menuItem?.getItem(0)?.setVisible(true)
+                        setupChildFragment(
+                            frameLayout,
+                            TvShowFragment()
+                        )
+                    }
+
+                    R.id.bottom_menu_fav -> {
+                        menuItem?.getItem(0)?.setVisible(false)
+                        setupChildFragment(
+                            frameLayout,
+                            FavoriteFragment()
+                        )
+                    }
+
                 }
 
-                R.id.bottom_menu_tv -> {
-                    optionSearch =
-                        SEARCH_TV_SHOW
-                    menuItem?.getItem(0)?.setVisible(true)
-                    setupChildFragment(
-                        frameLayout,
-                        TvShowFragment()
-                    )
-                }
-
-                R.id.bottom_menu_fav -> {
-                    menuItem?.getItem(0)?.setVisible(false)
-                    setupChildFragment(
-                        frameLayout,
-                        FavoriteFragment()
-                    )
-                }
-
+                true
             }
-
-            true
         }
 
     }

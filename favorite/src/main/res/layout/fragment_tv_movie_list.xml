@@ -28,7 +28,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <include layout="@layout/empty_view"/>
+    <include
+        android:id="@+id/empty"
+        layout="@layout/empty_view"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

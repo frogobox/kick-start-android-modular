@@ -15,8 +15,6 @@ import com.frogobox.movie.R
 import com.frogobox.movie.databinding.FragmentTvMovieListBinding
 import com.frogobox.movie.mvvm.tv.DetailTvShowActivity
 import com.frogobox.movie.mvvm.main.MainActivity
-import kotlinx.android.synthetic.main.empty_view.*
-import kotlinx.android.synthetic.main.fragment_tv_movie_grid.*
 
 /**
  * A simple [Fragment] subclass.
@@ -41,11 +39,11 @@ class FavoriteTvShowFragment : BaseFragment<FragmentTvMovieListBinding>(),
             })
 
             eventShowProgress.observe(viewLifecycleOwner, Observer {
-                setupEventProgressView(progressBar, it)
+                setupEventProgressView(binding?.progressBar!!, it)
             })
 
             eventIsEmpty.observe(viewLifecycleOwner, Observer {
-                setupEventEmptyView(empty_view, it)
+                binding?.empty?.emptyView?.let { it1 -> setupEventEmptyView(it1, it) }
             })
 
         }
@@ -69,9 +67,11 @@ class FavoriteTvShowFragment : BaseFragment<FragmentTvMovieListBinding>(),
         context?.let { adapter.setRecyclerViewLayout(it, R.layout.item_list_tv_movie) }
         adapter.setRecyclerViewListener(this)
         adapter.setRecyclerViewData(data)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        binding?.apply {
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        }
     }
 
     override fun onItemClicked(data: FavoriteTvShow) {

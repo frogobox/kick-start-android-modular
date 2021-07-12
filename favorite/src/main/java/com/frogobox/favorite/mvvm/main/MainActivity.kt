@@ -9,7 +9,6 @@ import com.frogobox.favorite.mvvm.tv.TvShowFragment
 import com.frogobox.favorite.util.BaseFavoriteActivity
 import com.frogobox.favorite.mvvm.movie.MovieViewModel
 import com.frogobox.favorite.mvvm.tv.TvShowViewModel
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseFavoriteActivity<ActivityMainBinding>() {
 
@@ -40,8 +39,10 @@ class MainActivity : BaseFavoriteActivity<ActivityMainBinding>() {
             TvShowFragment(),
             resources.getString(R.string.title_favorite_tv_show)
         )
-        viewpager.adapter = pagerAdapter
-        tablayout.setupWithViewPager(viewpager)
+        binding.apply {
+            viewpager.adapter = pagerAdapter
+            tablayout.setupWithViewPager(viewpager)
+        }
     }
 
 }
