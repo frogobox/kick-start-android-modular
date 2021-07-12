@@ -6,6 +6,7 @@ import com.frogobox.base.BuildConfig
 import com.frogobox.base.source.model.Movie
 import com.frogobox.base.source.model.TvShow
 import com.frogobox.base.util.Helper
+import com.readystatesoftware.chuck.ChuckInterceptor
 import io.reactivex.Observable
 import okhttp3.Cache
 import okhttp3.OkHttpClient
@@ -84,7 +85,6 @@ interface ApiService {
             val mClient = if (BuildConfig.DEBUG) {
                 OkHttpClient.Builder()
                     .cache(appCache)
-//                    .addInterceptor(ChuckInterceptor(BaseApplication.getContext()))
                     .addInterceptor { chain ->
                         // Get the request from the chain.
                         var request = chain.request()
@@ -124,7 +124,7 @@ interface ApiService {
                         chain.proceed(request)
                     }
                     .addInterceptor(mLoggingInterceptor)
-//                    .addInterceptor(ChuckInterceptor(BaseApplication.getContext()))
+                    .addInterceptor(ChuckInterceptor(BaseApplication.getContext()))
                     .readTimeout(30, TimeUnit.SECONDS)
                     .connectTimeout(30, TimeUnit.SECONDS)
                     .build()

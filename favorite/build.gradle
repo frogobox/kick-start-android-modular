@@ -23,6 +23,26 @@ android {
     // Declaration apk / aab name
     def nameAPK = nameAppLower.replace(" ", "-")
 
+    // Declaration admob id for debug
+    def debugAdmobPublisherId = "ca-app-pub-3940256099942544~3347511713"
+    def debugAdmobBanner = "ca-app-pub-3940256099942544/6300978111"
+    def debugAdmobInterstitial = "ca-app-pub-3940256099942544/1033173712"
+    def debugAdmobInterstitialVideo = "ca-app-pub-3940256099942544/8691691433"
+    def debugAdmobRewarded = "ca-app-pub-3940256099942544/5224354917"
+    def debugAdmobRewardedInterstitial = "ca-app-pub-3940256099942544/5354046379"
+    def debugAdmobNativeAdvanced = "ca-app-pub-3940256099942544/2247696110"
+    def debugAdmobNativeAdvancedVideo = "ca-app-pub-3940256099942544/1044960115"
+
+    // Declaration admob id for release
+    def releaseAdmobPublisherId = ""
+    def releaseAdmobBanner = ""
+    def releaseAdmobInterstitial = ""
+    def releaseAdmobInterstitialVideo = ""
+    def releaseAdmobRewarded = ""
+    def releaseAdmobRewardedInterstitial = ""
+    def releaseAdmobNativeAdvanced = ""
+    def releaseAdmobNativeAdvancedVideo = ""
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -56,6 +76,21 @@ android {
         setProperty("archivesBaseName", nameAPK + versionName + "#" + versionCode + "-"
                 + new Date().format('ddMMyy'))
 
+        resConfigs "en", "id"
+
+        // Inject app name for debug
+        resValue "string", "app_name", nameAppDebug
+
+        // Inject admob id for debug
+        resValue "string", "admob_publisher_id", debugAdmobPublisherId
+        resValue "string", "admob_banner", debugAdmobBanner
+        resValue "string", "admob_interstitial", debugAdmobInterstitial
+        resValue "string", "admob_interstitial_video", debugAdmobInterstitialVideo
+        resValue "string", "admob_rewarded", debugAdmobRewarded
+        resValue "string", "admob_rewarded_interstitial", debugAdmobRewardedInterstitial
+        resValue "string", "admob_native_advanced", debugAdmobNativeAdvanced
+        resValue "string", "admob_native_advanced_video", debugAdmobNativeAdvancedVideo
+
     }
 
     buildTypes {
@@ -70,7 +105,6 @@ android {
 dependencies {
 
     implementation project(':base')
-
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

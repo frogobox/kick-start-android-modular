@@ -24,8 +24,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.frogobox.movie.mvvm.main.SettingActivity" />
-        <activity android:name="com.frogobox.movie.mvvm.tv.SearchTvShowActivity" />
-        <activity android:name="com.frogobox.movie.mvvm.movie.SearchMovieActivity" />
+        <activity
+            android:name="com.frogobox.movie.mvvm.tv.SearchTvShowActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name="com.frogobox.movie.mvvm.movie.SearchMovieActivity"
+            android:theme="@style/AppThemeNoActionBar" />
         <activity android:name="com.frogobox.movie.mvvm.tv.DetailTvShowActivity" />
         <activity android:name="com.frogobox.movie.mvvm.movie.DetailMovieActivity" />
         <activity android:name="com.frogobox.movie.mvvm.main.MainActivity">
