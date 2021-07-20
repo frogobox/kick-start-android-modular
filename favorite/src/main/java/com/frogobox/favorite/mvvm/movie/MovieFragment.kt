@@ -62,7 +62,7 @@ class MovieFragment : BaseFragment<FragmentTvMovieListBinding>(),
     }
 
     private fun setupRecyclerView(data: List<FavoriteMovie>) {
-        val adapter = _root_ide_package_.com.frogobox.base.adapter.FavoriteMovieAdapter()
+        val adapter = com.frogobox.base.adapter.FavoriteMovieAdapter()
         context?.let { adapter.setRecyclerViewLayout(it, R.layout.item_list_tv_movie) }
         adapter.setRecyclerViewListener(this)
         adapter.setRecyclerViewData(data)
