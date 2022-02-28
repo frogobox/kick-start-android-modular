@@ -57,7 +57,7 @@ class MainActivity : BaseAppActivity<ActivityMainBinding>() {
     fun obtainFavoriteTvShowViewModel(): FavoriteTvShowViewModel =
         obtainViewModel(FavoriteTvShowViewModel::class.java)
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.toolbar_main, menu)
         menuItem = menu
         return true

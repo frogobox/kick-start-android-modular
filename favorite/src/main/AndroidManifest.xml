@@ -17,7 +17,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".mvvm.tv.DetailTvShowActivity" />
         <activity android:name=".mvvm.movie.DetailMovieActivity" />
-        <activity android:name=".mvvm.main.MainActivity">
+        <activity
+            android:name=".mvvm.main.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

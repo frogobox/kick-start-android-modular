@@ -32,7 +32,9 @@
             android:theme="@style/AppThemeNoActionBar" />
         <activity android:name="com.frogobox.movie.mvvm.tv.DetailTvShowActivity" />
         <activity android:name="com.frogobox.movie.mvvm.movie.DetailMovieActivity" />
-        <activity android:name="com.frogobox.movie.mvvm.main.MainActivity">
+        <activity
+            android:name="com.frogobox.movie.mvvm.main.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,7 +42,9 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="com.frogobox.movie.widget.FavoriteBannerWidget">
+        <receiver
+            android:name="com.frogobox.movie.widget.FavoriteBannerWidget"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>

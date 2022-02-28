@@ -94,7 +94,7 @@ class DetailTvShowActivity : BaseAppActivity<ActivityDetailBinding>(), SaveViewC
             menuItem?.getItem(0)?.icon = getDrawable(R.drawable.ic_un_favorite)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.toolbar_favorite, menu)
         menuItem = menu
         setFavorite(isFav)

@@ -1,2 +1,2 @@
-include ':app', ':base', ':favorite'
-rootProject.name='movie'
+rootProject.name="movie"
+include ":app", ":base", ":favorite"

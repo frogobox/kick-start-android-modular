@@ -124,7 +124,6 @@ interface ApiService {
                         chain.proceed(request)
                     }
                     .addInterceptor(mLoggingInterceptor)
-                    .addInterceptor(ChuckInterceptor(BaseApplication.getContext()))
                     .readTimeout(30, TimeUnit.SECONDS)
                     .connectTimeout(30, TimeUnit.SECONDS)
                     .build()
