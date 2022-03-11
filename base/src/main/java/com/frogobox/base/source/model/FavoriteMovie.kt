@@ -5,7 +5,6 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.android.parcel.Parcelize
 import com.frogobox.base.util.Constant.RoomDatabase.Movie.COLUMN_BACKDROP_PATH
 import com.frogobox.base.util.Constant.RoomDatabase.Movie.COLUMN_ID
 import com.frogobox.base.util.Constant.RoomDatabase.Movie.COLUMN_OVERVIEW
@@ -13,6 +12,7 @@ import com.frogobox.base.util.Constant.RoomDatabase.Movie.COLUMN_POSTER_PATH
 import com.frogobox.base.util.Constant.RoomDatabase.Movie.COLUMN_TITLE
 import com.frogobox.base.util.Constant.RoomDatabase.Movie.TABLE_NAME
 import com.frogobox.base.util.Constant.RoomDatabase.Movie._ID
+import kotlinx.parcelize.Parcelize
 
 /**
  * Created by Faisal Amir

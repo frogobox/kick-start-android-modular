@@ -53,11 +53,11 @@ class Notification {
             it?.let { it1 ->
                 NotificationCompat.Builder(context, it1)
                     .setContentIntent(pendingIntent)
-                    .setSmallIcon(R.drawable.chuck_ic_notification_white_24dp)
+                    .setSmallIcon(R.drawable.ic_notification)
                     .setLargeIcon(
                         BitmapFactory.decodeResource(
                             context.resources,
-                            R.drawable.chuck_ic_notification_white_24dp
+                            R.drawable.ic_notification
                         )
                     )
                     .setContentTitle(contentTitle)

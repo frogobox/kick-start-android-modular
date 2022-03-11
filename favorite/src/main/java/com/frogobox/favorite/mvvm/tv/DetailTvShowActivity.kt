@@ -3,6 +3,7 @@ package com.frogobox.favorite.mvvm.tv
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.bumptech.glide.Glide
 import com.frogobox.base.BuildConfig
 import com.frogobox.base.callback.DeleteViewCallback
 import com.frogobox.base.callback.SaveViewCallback
@@ -12,7 +13,6 @@ import com.frogobox.base.source.model.TvShow
 import com.frogobox.base.util.Helper
 import com.frogobox.favorite.R
 import com.frogobox.favorite.util.BaseFavoriteActivity
-import com.squareup.picasso.Picasso
 
 class DetailTvShowActivity : BaseFavoriteActivity<ActivityDetailBinding>(), SaveViewCallback, DeleteViewCallback {
 
@@ -58,7 +58,7 @@ class DetailTvShowActivity : BaseFavoriteActivity<ActivityDetailBinding>(), Save
         binding.apply {
             extraFavoriteTvShow = baseGetExtraData(EXTRA_FAV_TV)
             val poster = extraFavoriteTvShow.backdrop_path?.let { Helper.Func.removeBackSlash(it) }
-            Picasso.get().load(BuildConfig.TMDB_PATH_URL_IMAGE + poster).into(ivPoster)
+            Glide.with(this@DetailTvShowActivity).load(BuildConfig.TMDB_PATH_URL_IMAGE + poster).into(ivPoster)
             tvTitle.text = extraFavoriteTvShow.name
             tvOverview.text = extraFavoriteTvShow.overview
             extraFavoriteTvShow.id?.let { mViewModel.getFavoriteTvShow(it) }
@@ -72,7 +72,7 @@ class DetailTvShowActivity : BaseFavoriteActivity<ActivityDetailBinding>(), Save
             menuItem?.getItem(0)?.icon = getDrawable(R.drawable.ic_un_favorite)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.toolbar_favorite, menu)
         menuItem = menu
         setFavorite(isFav)

@@ -8,7 +8,7 @@ import com.frogobox.base.source.model.FavoriteTvShow
 import com.frogobox.base.util.Constant.RoomDatabase.TvShow.COLUMN_ID
 import com.frogobox.base.util.Constant.RoomDatabase.TvShow.TABLE_NAME
 import com.frogobox.base.util.Constant.RoomDatabase.TvShow._ID
-import io.reactivex.Single
+import io.reactivex.rxjava3.core.Single
 
 /**
  * Created by Faisal Amir

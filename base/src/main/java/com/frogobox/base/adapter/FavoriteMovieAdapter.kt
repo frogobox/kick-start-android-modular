@@ -3,13 +3,15 @@ package com.frogobox.base.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.frogobox.base.BuildConfig
 import com.frogobox.base.source.model.FavoriteMovie
 import com.frogobox.base.BaseViewAdapter
 import com.frogobox.base.BaseViewHolder
+import com.frogobox.base.R
 import com.frogobox.base.util.Helper
-import kotlinx.android.synthetic.main.item_list_tv_movie.view.*
 
 /**
  * Created by Faisal Amir
@@ -29,7 +31,7 @@ import kotlinx.android.synthetic.main.item_list_tv_movie.view.*
  *
  */
 class FavoriteMovieAdapter :
-    BaseViewAdapter<FavoriteMovie, com.frogobox.base.adapter.FavoriteMovieAdapter.FavoriteMovieViewHolder>() {
+    BaseViewAdapter<FavoriteMovie, FavoriteMovieAdapter.FavoriteMovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteMovieAdapter.FavoriteMovieViewHolder =
 
@@ -43,9 +45,9 @@ class FavoriteMovieAdapter :
 
     inner class FavoriteMovieViewHolder(view: View) : BaseViewHolder<FavoriteMovie>(view) {
 
-        private val ivPoster = view.iv_poster
-        private val tvTitle = view.tv_title
-        private val tvOverview = view.tv_overview
+        private val ivPoster = view.findViewById<ImageView>(R.id.iv_poster)
+        private val tvTitle = view.findViewById<TextView>(R.id.tv_title)
+        private val tvOverview = view.findViewById<TextView>(R.id.tv_overview)
 
         override fun initComponent(data: FavoriteMovie) {
             super.initComponent(data)

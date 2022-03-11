@@ -1,6 +1,5 @@
 package com.frogobox.favorite.mvvm.tv
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -33,17 +32,17 @@ class TvShowFragment : BaseFragment<FragmentTvMovieListBinding>(),
     override fun setupViewModel() {
         mViewModel = (activity as MainActivity).obtainTvShowViewModel().apply {
 
-            favTvShowListLive.observe(viewLifecycleOwner, Observer {
+            favTvShowListLive.observe(viewLifecycleOwner) {
                 setupRecyclerView(it)
-            })
+            }
 
-            eventShowProgress.observe(viewLifecycleOwner, Observer {
+            eventShowProgress.observe(viewLifecycleOwner) {
                 setupEventProgressView(binding?.progressBar!!, it)
-            })
+            }
 
-            eventIsEmpty.observe(viewLifecycleOwner, Observer {
+            eventIsEmpty.observe(viewLifecycleOwner) {
 //                setupEventEmptyView(empty_view, it)
-            })
+            }
 
         }
     }

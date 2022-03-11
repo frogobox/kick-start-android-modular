@@ -4,6 +4,8 @@ import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.os.Binder
 import android.os.Bundle
 import android.widget.RemoteViews
@@ -11,6 +13,9 @@ import android.widget.RemoteViewsService
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.frogobox.base.BuildConfig
 import com.frogobox.base.source.model.FavoriteMovie
 import com.frogobox.base.source.DataSource
@@ -18,7 +23,6 @@ import com.frogobox.base.util.AppExecutors
 import com.frogobox.base.util.Constant
 import com.frogobox.base.util.Constant.RoomDatabase.Movie.setupCursor
 import com.frogobox.movie.R
-import com.squareup.picasso.Picasso
 import java.io.IOException
 
 /**
@@ -38,21 +42,16 @@ import java.io.IOException
  * com.frogobox.movie.ui.widget
  *
  */
-class StackRemoteViewFactory(private val mContext: Context, private val intent: Intent) :
+class StackRemoteViewFactory(private val mContext: Context, intent: Intent) :
     RemoteViewsService.RemoteViewsFactory, DataSource.GetLocalCallBack<Cursor> {
-
 
     private val LOADER_CHEESES = 1
 
     private val mWidgetItems = mutableListOf<FavoriteMovie>()
-    private val mAppWidgetId: Int
-
-    init {
-        mAppWidgetId = intent.getIntExtra(
-            AppWidgetManager.EXTRA_APPWIDGET_ID,
-            AppWidgetManager.INVALID_APPWIDGET_ID
-        )
-    }
+    private val mAppWidgetId: Int = intent.getIntExtra(
+        AppWidgetManager.EXTRA_APPWIDGET_ID,
+        AppWidgetManager.INVALID_APPWIDGET_ID
+    )
 
     private val mLoaderCallbacks = object : LoaderManager.LoaderCallbacks<Cursor> {
         override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
@@ -82,7 +81,7 @@ class StackRemoteViewFactory(private val mContext: Context, private val intent: 
 
     private fun getMovieData(data: Cursor?) {
         mWidgetItems.clear()
-        data?.let { Constant.RoomDatabase.Movie.setupCursor(it) }?.let { mWidgetItems.addAll(it) }
+        data?.let { setupCursor(it) }?.let { mWidgetItems.addAll(it) }
     }
 
     private fun getCursorMovie() {
@@ -130,8 +129,17 @@ class StackRemoteViewFactory(private val mContext: Context, private val intent: 
         // -----------------------------------------------------------------------------------------
         mRemoteViews.setTextViewText(R.id.textViewWidget, mWidgetItems[position].title)
         try {
-            val b = Picasso.get().load(BuildConfig.TMDB_PATH_URL_IMAGE + mWidgetItems[position].backdrop_path).get()
-            mRemoteViews.setImageViewBitmap(R.id.imageViewWidget, b)
+            Glide.with(mContext).asBitmap().load(BuildConfig.TMDB_PATH_URL_IMAGE + mWidgetItems[position].backdrop_path).into(object : CustomTarget<Bitmap>(){
+                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                    mRemoteViews.setImageViewBitmap(R.id.imageViewWidget, resource)
+                }
+                override fun onLoadCleared(placeholder: Drawable?) {
+                    // this is called when imageView is cleared on lifecycle call or for
+                    // some other reason.
+                    // if you are referencing the bitmap somewhere else too other than this imageView
+                    // clear it here as you can no longer have the bitmap
+                }
+            })
         } catch (e: IOException) {
             e.printStackTrace()
         }

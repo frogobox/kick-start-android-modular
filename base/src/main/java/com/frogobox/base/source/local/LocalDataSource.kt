@@ -20,10 +20,10 @@ import com.frogobox.base.util.Constant.Pref.PREF_RELEASE_REMINDER
 import com.frogobox.base.util.Helper.Preference.Delete.deletePref
 import com.frogobox.base.util.Helper.Preference.Load.loadPrefBoolean
 import com.frogobox.base.util.Helper.Preference.Save.savePrefBoolean
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 /**
  * Created by Faisal Amir

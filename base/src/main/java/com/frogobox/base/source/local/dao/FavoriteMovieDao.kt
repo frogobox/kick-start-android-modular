@@ -8,7 +8,7 @@ import com.frogobox.base.source.model.FavoriteMovie
 import com.frogobox.base.util.Constant.RoomDatabase.Movie.COLUMN_ID
 import com.frogobox.base.util.Constant.RoomDatabase.Movie.TABLE_NAME
 import com.frogobox.base.util.Constant.RoomDatabase.Movie._ID
-import io.reactivex.Single
+import io.reactivex.rxjava3.core.Single
 
 /**
  * Created by Faisal Amir

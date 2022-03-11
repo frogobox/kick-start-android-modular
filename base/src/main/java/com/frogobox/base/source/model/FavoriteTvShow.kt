@@ -12,7 +12,7 @@ import com.frogobox.base.util.Constant.RoomDatabase.TvShow.COLUMN_OVERVIEW
 import com.frogobox.base.util.Constant.RoomDatabase.TvShow.COLUMN_POSTER_PATH
 import com.frogobox.base.util.Constant.RoomDatabase.TvShow.TABLE_NAME
 import com.frogobox.base.util.Constant.RoomDatabase.TvShow._ID
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 /**
  * Created by Faisal Amir

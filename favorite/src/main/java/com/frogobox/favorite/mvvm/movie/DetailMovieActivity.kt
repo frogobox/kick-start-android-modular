@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.frogobox.base.BuildConfig
 import com.frogobox.base.callback.DeleteViewCallback
 import com.frogobox.base.callback.SaveViewCallback
@@ -13,7 +14,6 @@ import com.frogobox.base.source.model.Movie
 import com.frogobox.base.util.Helper
 import com.frogobox.favorite.R
 import com.frogobox.favorite.util.BaseFavoriteActivity
-import com.squareup.picasso.Picasso
 
 class DetailMovieActivity : BaseFavoriteActivity<ActivityDetailBinding>(), SaveViewCallback, DeleteViewCallback {
 
@@ -35,14 +35,14 @@ class DetailMovieActivity : BaseFavoriteActivity<ActivityDetailBinding>(), SaveV
     override fun setupViewModel() {
         mViewModel = obtainDetailMovieViewModel().apply {
 
-            favoriteMovie.observe(this@DetailMovieActivity, Observer {
+            favoriteMovie.observe(this@DetailMovieActivity) {
 
-            })
+            }
 
-            eventIsFavorite.observe(this@DetailMovieActivity, Observer {
+            eventIsFavorite.observe(this@DetailMovieActivity) {
                 setFavorite(it)
                 isFav = it
-            })
+            }
 
         }
     }
@@ -60,7 +60,7 @@ class DetailMovieActivity : BaseFavoriteActivity<ActivityDetailBinding>(), SaveV
         binding.apply {
             extraFavoriteMovie = baseGetExtraData(EXTRA_FAV_MOVIE)
             val poster = extraFavoriteMovie.backdrop_path?.let { Helper.Func.removeBackSlash(it) }
-            Picasso.get().load(BuildConfig.TMDB_PATH_URL_IMAGE + poster).into(ivPoster)
+            Glide.with(this@DetailMovieActivity).load(BuildConfig.TMDB_PATH_URL_IMAGE + poster).into(ivPoster)
             tvTitle.text = extraFavoriteMovie.title
             tvOverview.text = extraFavoriteMovie.overview
             extraFavoriteMovie.id?.let { mViewModel.getFavoriteMovie(it) }
@@ -74,7 +74,7 @@ class DetailMovieActivity : BaseFavoriteActivity<ActivityDetailBinding>(), SaveV
             menuItem?.getItem(0)?.icon = getDrawable(R.drawable.ic_un_favorite)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.toolbar_favorite, menu)
         menuItem = menu
         setFavorite(isFav)

@@ -2,8 +2,8 @@ package com.frogobox.base.source.remote
 
 import com.frogobox.base.BaseApiModel
 import com.google.gson.Gson
-import io.reactivex.Observer
-import io.reactivex.disposables.Disposable
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.core.Observer
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException

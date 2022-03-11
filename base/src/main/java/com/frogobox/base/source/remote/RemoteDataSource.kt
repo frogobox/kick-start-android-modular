@@ -12,8 +12,8 @@ import com.frogobox.base.source.DataSource
 import com.frogobox.base.util.NullAdapter
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 /**
  * Created by Faisal Amir

@@ -3,13 +3,15 @@ package com.frogobox.base.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import com.frogobox.base.BuildConfig
 import com.frogobox.base.source.model.Movie
 import com.frogobox.base.BaseViewAdapter
 import com.frogobox.base.BaseViewHolder
 import com.frogobox.base.util.Helper.Func.removeBackSlash
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.item_grid_tv_movie.view.*
+import com.frogobox.base.R
 
 /**
  * Created by Faisal Amir
@@ -42,9 +44,9 @@ class MovieAdapter :
 
     inner class MovieViewHolder(view: View) : BaseViewHolder<Movie>(view) {
 
-        private val ivPoster = view.iv_poster
-        private val tvTitle = view.tv_title
-        private val tvOverview = view.tv_overview
+        private val ivPoster = view.findViewById<ImageView>(R.id.iv_poster)
+        private val tvTitle = view.findViewById<TextView>(R.id.tv_title)
+        private val tvOverview = view.findViewById<TextView>(R.id.tv_overview)
 
         override fun initComponent(data: Movie) {
             super.initComponent(data)

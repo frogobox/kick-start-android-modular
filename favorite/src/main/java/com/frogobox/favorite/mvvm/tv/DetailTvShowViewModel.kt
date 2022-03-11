@@ -3,11 +3,9 @@ package com.frogobox.favorite.mvvm.tv
 import android.app.Application
 import android.database.Cursor
 import com.frogobox.base.BaseViewModel
-import com.frogobox.base.callback.DeleteViewCallback
-import com.frogobox.base.callback.SaveViewCallback
-import com.frogobox.base.source.model.FavoriteTvShow
 import com.frogobox.base.source.DataSource
 import com.frogobox.base.source.Repository
+import com.frogobox.base.source.model.FavoriteTvShow
 import com.frogobox.base.util.Constant.RoomDatabase.TvShow.setupCursor
 import com.frogobox.base.util.SingleLiveEvent
 
@@ -28,15 +26,18 @@ import com.frogobox.base.util.SingleLiveEvent
  * com.frogobox.favorite
  *
  */
-class DetailTvShowViewModel (private val context: Application, private val repository: Repository) :
+class DetailTvShowViewModel(private val context: Application, private val repository: Repository) :
     BaseViewModel(context) {
 
     var favoriteTvShow = SingleLiveEvent<FavoriteTvShow>()
     var eventIsFavorite = SingleLiveEvent<Boolean>()
 
-    fun saveFavoriteTvShow(data: FavoriteTvShow, callback: com.frogobox.base.callback.SaveViewCallback){
+    fun saveFavoriteTvShow(
+        data: FavoriteTvShow,
+        callback: com.frogobox.base.callback.SaveViewCallback
+    ) {
         callback.onShowProgress()
-        if (repository.saveFavoriteTvShow(context, data)){
+        if (repository.saveFavoriteTvShow(context, data)) {
             callback.onHideProgress()
             callback.onSuccesInsert()
             eventIsFavorite.postValue(true)
@@ -46,9 +47,12 @@ class DetailTvShowViewModel (private val context: Application, private val repos
         }
     }
 
-    fun deleteFavoriteTvShow(tableId: Int, callback: com.frogobox.base.callback.DeleteViewCallback){
+    fun deleteFavoriteTvShow(
+        tableId: Int,
+        callback: com.frogobox.base.callback.DeleteViewCallback
+    ) {
         callback.onShowProgress()
-        if (repository.deleteFavoriteMovieProvider(context, tableId)){
+        if (repository.deleteFavoriteMovieProvider(context, tableId)) {
             callback.onHideProgress()
             callback.onSuccesDelete()
             eventIsFavorite.postValue(false)
@@ -58,8 +62,8 @@ class DetailTvShowViewModel (private val context: Application, private val repos
         }
     }
 
-    fun getFavoriteTvShow(id: Int){
-        repository.getFavoriteTvShowCursor(context, object : DataSource.GetLocalCallBack<Cursor>{
+    fun getFavoriteTvShow(id: Int) {
+        repository.getFavoriteTvShowCursor(context, object : DataSource.GetLocalCallBack<Cursor> {
             override fun onShowProgressDialog() {
                 eventShowProgress.postValue(true)
             }
