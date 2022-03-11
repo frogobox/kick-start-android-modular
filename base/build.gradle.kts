@@ -1,16 +1,11 @@
-apply plugin: "com.android.library"
-apply plugin: "kotlin-android"
-apply plugin: "kotlin-android-extensions"
-apply plugin: "kotlin-kapt"
+plugins {
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+}
+
 
 android {
-
-    def versionMajor = 1
-    def versionMinor = 0
-    def versionPatch = 0
-
-    def projectVersionCode = (versionMajor * 100) + (versionMinor * 10) + (versionPatch * 1)
-    def projectVersionName = "$versionMajor.$versionMinor.$versionPatch"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
